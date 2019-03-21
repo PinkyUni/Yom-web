@@ -1,0 +1,16 @@
+.ingredient-info {
+	flex-direction: column;
+}
+
+.ingredient-descripton {
+	order: 1;
+}
+
+.imgs {
+	order: 2;
+	max-height: 400px;
+}
+
+.ingredient-info img {
+	max-width: 40%;
+}

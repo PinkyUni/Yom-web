@@ -1,0 +1,42 @@
+nav {
+  font-family: Podkova-Bold;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.title {
+  flex: 1;
+  font-size: 2em;
+  padding: 1.5em;
+  padding-left: 10vw;
+}
+
+.main-menu {
+  margin: 0;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 3;
+  list-style: none;
+}
+
+.main-menu li {
+  display: inline;
+  padding: 1.5em 2em;
+  text-transform: uppercase;
+}
+
+.main-menu li:hover {
+  border-bottom: outset;
+}
+
+.user-icon {
+  height: 50px;
+  margin: 0 1.5em;
+  border-radius: 50%;
+  border: 1px solid #585858;
+}
