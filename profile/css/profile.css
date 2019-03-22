@@ -1,0 +1,272 @@
+.main {
+	display: flex;
+	justify-content: space-around;
+	padding: 2vw 2vw 0 15vw;
+	background: url(../img/back.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw 20vw;
+    box-shadow: 0 1px 1px #c1c1c1;
+}
+
+.user-info {
+	flex: 2;
+	width: 25vw;
+	height: 25vw;
+	margin-bottom: 4vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f2f2f2;
+	border-radius: 5px;
+	border: 3px solid white;
+	box-shadow: 0 0 3px #585858;
+}
+
+.user-photo {
+	padding: 1vw;
+	flex: 5;
+	min-width: 20vw;
+}
+
+.photo {
+	width: 100%;
+	height: 100%;
+}
+
+.user-name {
+	flex: 1;
+	width: 100%;
+	text-align: center;
+}
+
+.name {
+	font-family: Podkova-Bold;
+	font-size: 2vw;
+	font-weight: bold;
+}
+
+.info {
+	flex: 5;
+	display: flex;
+	flex-direction: column;
+
+}
+
+.settings {
+	flex: 4;
+	height: 18vw;
+	align-self: flex-end;
+}
+
+.fa-cog {
+	background-color: #f2f2f2;
+	padding: 0.5vw;
+	font-size: 2vw;
+	border-radius: 5px;
+	box-shadow: 0 0 2px #585858;
+}
+
+.fa-cog:hover {
+	background-color: white;
+	box-shadow: 0 0 4px #585858;
+}
+
+.recipes-info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding: 0 10vw;
+}
+
+.recipes-count {
+	padding-left: 2vw;
+	display: flex;
+	height: 5vw;
+}
+
+.user-recipes,
+.fav-recipes {
+	font-size: 1.3vw;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;	
+	align-items: center;
+	margin: 0.5vw;
+	padding-bottom: 1vw;
+}
+
+.recipes-info .name {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+.tabs {
+	height: 4vw;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+.tab {
+	font-family: Podkova-Bold;
+	padding: 0.7vw 3vw;
+	margin-right: 2px;
+	font-size: 1.5vw;
+	background-color: #f2f2f2;
+	border-radius: 10px 10px 0 0;
+	box-shadow: 0 0 2px #c1c1c1;
+}
+
+.tab:hover {
+	background-color: white;
+	box-shadow: 0 -1px 2px #585858;
+	cursor: pointer;
+}
+
+.container {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	margin: 4vh 15vw 8vh 15vw;
+	padding: 1vw;
+}
+
+.recipe {
+	max-height: 20vw;
+	display: flex;
+	background-color: #F9F9F9;
+	border-radius: 10px;
+	border: 4px solid white;
+	border-radius: 10px;
+	box-shadow: 0 0 2px #585858;
+	padding: 1vw;
+	filter: opacity(0.8);
+	margin-bottom: 1vw;
+}
+
+.recipe:hover {
+	box-shadow: 0 0 4px #585858;
+	filter: opacity(1);
+}
+
+.imge-el {
+	flex: 1;
+}
+
+.img {
+	max-width: 20vw;
+	border-radius: 10px;
+}
+
+.info-el {
+	max-width: 70%;
+	box-sizing: border-box;
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0 2vw;
+}
+
+.recipe-name {
+	height: 3vw;
+	font-size: 1.7vw;
+	font-family: Neucha;
+	font-weight: bold;
+	text-align: center;
+	padding-bottom: 0.5vw;
+}
+
+.main-info-el {
+	display: flex;
+	justify-content: space-between;
+	max-height: 14vw;
+}
+
+.main-info-el > * {
+	max-width: 100%;
+}
+
+.ingredients {
+	width: 40%;
+}
+
+.ing-title {
+	font-size: 1.5vw;
+}
+
+.list {
+	overflow: hidden;
+
+	padding-left: 3vw;
+	padding-top: 0.4vw;
+	margin: 0;
+	max-height: 11.6vw;
+	max-width: 80%;
+	overflow-y: hidden;
+	position: relative;
+}
+
+.list::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.2vw;
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 10%, #F9F9F9 60%);
+}
+
+.list > * {
+	font-size: 1.2vw;
+}
+
+li:last-child {
+	margin-bottom: 0;
+}
+
+.cooking-info {
+	display: flex;
+	align-items: center;
+	background-color: #fff7e5;
+	border-radius: 5px;
+	box-shadow: 0 0 1px #585858;
+	max-height: 5vw;
+	margin-top: 0.5vw;
+}
+
+.cooking-el {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5vw 2vw;
+	font-size: 1.2vw;
+}
+
+.del {
+	width: 1px;
+	height: 60%;
+	background-color: #d6d6d6;
+}
+
+.btn {
+	height: 3vw;
+	font-size: 1.4vw;
+	display: flex;
+	justify-content: center;
+}
+
+.btn-name {
+	padding: 0.5vw;
+	width: auto;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	background-color: #E8A701;
+}
+
+.btn-name:hover {
+	background-color: #ffb000;
+	box-shadow: 0 0 2px #585858;
+}
