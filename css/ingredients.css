@@ -1,0 +1,85 @@
+.sidenav {
+    display: none;
+}
+
+.button-menu {
+    display: none;
+}
+
+header {
+    background: url(../img/ingr_back.jpg);
+    filter: blur(3px);
+    height: 70vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 3em;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: Podkova-Bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+}
+
+.ingredients {
+    padding: 2em 10vw;
+}
+
+.ingredient-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.imgs {
+    display: flex;
+    flex: 1;
+}
+
+.ingredient-info img {
+    /*flex: 1;*/
+    border-radius: 10px;
+    margin: 1em;
+}
+
+.ingredient-descripton {
+    flex: 1;
+    text-align: center;
+    font-family: Neucha;
+    padding: 2em;
+    font-size: 1.2em;
+}
+
+.ingredient-info:nth-child(2n) .imgs {
+    order: 2;
+}
+
+.bottom-galery div:nth-child(1) {
+    background: url(../img/ingredient1.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.bottom-galery div:nth-child(2) {
+    background: url(../img/ingredient2.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.bottom-galery div:nth-child(3) {
+    background: url(../img/ingredient3.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.bottom-galery div:nth-child(4) {
+    background: url(../img/ingredient4.jpg) no-repeat center center;
+    background-size: cover;
+}
