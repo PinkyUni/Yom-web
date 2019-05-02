@@ -15,6 +15,7 @@ class Recipes_Controller extends Controller {
 
     function action_index() {
 //        $data = $this->model->get_data();
+        session_start();
         require_once 'application/core/cache.php';
         $cache = new Cache();
         $cache->read_cache();

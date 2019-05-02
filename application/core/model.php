@@ -10,8 +10,6 @@ class Model
             > и др.
     */
     // метод выборки данных
-    public function get_data()
-    {
 
-    }
+
 }

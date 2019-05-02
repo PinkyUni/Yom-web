@@ -20,37 +20,38 @@ class Register_Model extends Model
         require_once 'mysqlconnector.php';
 
         $mysqlconnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-        $message = '';
 
-        if (isset($_POST["register"])) {
-            if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+        if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
-                $username = $mysqlconnector->transformString($_POST['username']);
-                $email = $mysqlconnector->transformString($_POST['email']);
-                $password = $mysqlconnector->transformString($_POST['password']);
+            $username = $mysqlconnector->transformString($_POST['username']);
+            $email = $mysqlconnector->transformString($_POST['email']);
+            $password = $mysqlconnector->transformString($_POST['password']);
 
-                $query = "SELECT * FROM users WHERE name='" . $username . "';";
-                $res = $mysqlconnector->getQueryResultWithoutTransformation($query);
-                $numrows = $mysqlconnector->getRowsNumber($res);
+            $query = "SELECT * FROM users WHERE name='" . $username . "';";
+            $res = $mysqlconnector->getQueryResultWithoutTransformation($query);
+            $numrows = $mysqlconnector->getRowsNumber($res);
 
-                if ($numrows == 0) {
-                    $sql = "INSERT INTO users (name, email, password) VALUES ('$username','$email', '$password')";
-                    $result = $mysqlconnector->getQueryResultWithoutTransformation($sql);
-                    if ($result) {
-                        $message = "Account Successfully Created";
-                        header("Location: /profile");
-                    } else {
-                        $message = "Failed to insert data information!";
+            if ($numrows == 0) {
+
+                $img = "empty.jpg";
+
+                if ($_FILES['inputfile']['error'] == UPLOAD_ERR_OK && $_FILES['inputfile']['type'] == 'image/jpeg' && !is_null($_FILES['inputfile']['tmp_name'])) {
+                    $destination_dir = "img/users/" . $username . '/';
+                    if (!file_exists($destination_dir)) {
+                        mkdir($destination_dir);
                     }
-                } else {
-                    $message = "That username already exists! Please try another one!";
+                    $destination_dir .= $_FILES['inputfile']['name'];
+                    if (move_uploaded_file($_FILES['inputfile']['tmp_name'], $destination_dir)) {
+                        $img = $mysqlconnector->transformString($_FILES['inputfile']['name']);
+                    }
                 }
-            } else {
-                $message = "All fields are required!";
+
+                $sql = "INSERT INTO users (name, email, password, img) VALUES ('$username','$email', '$password', '$img');";
+                $result = $mysqlconnector->getQueryResultWithoutTransformation($sql);
+                if ($result) {
+                    header("Location: /profile");
+                }
             }
-        }
-        if (!empty($message)) {
-            return $message;
         }
     }
 }

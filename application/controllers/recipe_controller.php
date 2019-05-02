@@ -9,23 +9,20 @@
 class Recipe_Controller extends Controller
 {
 
+    /**
+     * Recipe_Controller constructor.
+     */
     function __construct() {
         $this->model = new Recipe_Model();
         $this->view = new View();
     }
 
     function action_index() {
-//        $data = $this->model->get_data();
-//        require_once 'application/core/cache.php';
-//        $cache = new Cache();
-//        $cache->read_cache();
-        $this->view->generate('recipe_view.php');
-//        $cache->write_cache();
-    }
-
-    function action_more_info() {
+        session_start();
         $vars = explode('/', $_SERVER['REQUEST_URI']);
-        $data = $this->model->get_recipe($vars[3], $vars[4]);
+        if (isset($_POST['place']))
+            $this->model->add_comment($vars[2], $vars[3]);
+        $data = $this->model->get_data($vars[3]);
         $this->view->generate('recipe_view.php', $data);
     }
 

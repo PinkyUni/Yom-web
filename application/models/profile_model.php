@@ -21,7 +21,8 @@ class Profile_Model extends Model
         return $this->userdata;
     }
 
-    private function get_user_data() {
+    private function get_user_data()
+    {
         $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
         $username = $_SESSION["session_username"];
@@ -31,22 +32,24 @@ class Profile_Model extends Model
         foreach ($data as $elem) {
             $name = $elem['name'];
             $img = $elem['img'];
-            $recipeTable = $elem['recipeTable'];
             $favTable = $elem['favTable'];
         }
 
-        $query = "SELECT * FROM $recipeTable;";
+        $query = "SELECT * FROM recipes WHERE username =  '" . $_SESSION['session_username'] . "';";
         $res = $mySQLConnector->getQueryResultWithoutTransformation($query);
-        $rec_count = $mySQLConnector->getRowsNumber($res);
+        $rec_count = 0;
+        if ($res)
+            $rec_count = $mySQLConnector->getRowsNumber($res);
 
         $query = "SELECT * FROM $favTable;";
         $res = $mySQLConnector->getQueryResultWithoutTransformation($query);
-        $fav_count = $mySQLConnector->getRowsNumber($res);
+        $fav_count = 0;
+        if ($res)
+            $fav_count = $mySQLConnector->getRowsNumber($res);
 
         $userdata = array(
             'name' => $name,
             'img' => $img,
-            'recTable' => $recipeTable,
             'rec_count' => $rec_count,
             'favTable' => $favTable,
             'fav_count' => $fav_count,
@@ -54,11 +57,13 @@ class Profile_Model extends Model
         return $userdata;
     }
 
-    function get_recipes() {
+    function get_recipes()
+    {
         $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
-        $table = $this->userdata['recTable'];
-        $query = "SELECT * FROM $table;";
+        $table = 'recipes';
+        $username = $_SESSION['session_username'];
+        $query = "SELECT * FROM $table WHERE username = '$username';";
         $data = $mySQLConnector->getQueryResult($query);
 
         $recipes = array();
@@ -81,11 +86,9 @@ class Profile_Model extends Model
 
     public function check_session()
     {
-        session_start();
-
         if (!isset($_SESSION["session_username"]))
             header("location: /login");
-        return $_SESSION['session_username'];
+        return true;
     }
 
 }

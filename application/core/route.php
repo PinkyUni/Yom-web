@@ -22,9 +22,18 @@ class Route
             $controller_name = $routes[1];
         }
 
+        $c_name = $controller_name;
         // получаем имя экшена
         if (!empty($routes[2])) {
             $action_name = $routes[2];
+            $method = 'action_' . $action_name;
+            $c_name .= '_Controller';
+            $c = $c_name;
+            $c_file = strtolower($c_name) . '.php';
+            $c_path = "application/controllers/" . $c_file;
+            require_once $c_path;
+            if (!method_exists($c, $method))
+                $action_name = 'index';
         }
         // добавляем префиксы
         $model_name = $controller_name . '_Model';
@@ -35,7 +44,7 @@ class Route
         $model_file = strtolower($model_name) . '.php';
         $model_path = "application/models/" . $model_file;
         if (file_exists($model_path)) {
-            include $model_path;
+            require_once $model_path;
         }
 
         // подцепляем файл с классом контроллера
@@ -43,7 +52,7 @@ class Route
         $controller_path = "application/controllers/" . $controller_file;
         try {
             if (file_exists($controller_path)) {
-                include $controller_path;
+                require_once $controller_path;
 
                 $controller = new $controller_name;
                 $action = $action_name;
@@ -58,7 +67,7 @@ class Route
                 throw new Exception();
             }
         } catch (Exception $e) {
-            Route::ErrorPage404();
+//            Route::ErrorPage404();
 
         }
     }

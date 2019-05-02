@@ -20,7 +20,7 @@ class Add_Recipe_Model extends Model
             $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
             $username = $_SESSION['session_username'];
-            $table = $username . "RecipeTable";
+            $table = "recipes";
 
             if(isset($_POST['name'])){
 
@@ -35,18 +35,6 @@ class Add_Recipe_Model extends Model
                     if (move_uploaded_file($_FILES['inputfile']['tmp_name'], $destination_dir)) {
                         $img = $mySQLConnector->transformString($_FILES['inputfile']['name']);
                     }
-                } else {
-                    switch ($_FILES['inputfile']['error']) {
-                        case UPLOAD_ERR_FORM_SIZE:
-                        case UPLOAD_ERR_INI_SIZE:
-                            echo 'File Size exceed';
-                            break;
-                        case UPLOAD_ERR_NO_FILE:
-                            echo 'FIle Not selected';
-                            break;
-                        default:
-                            echo 'Something is wrong';
-                    }
                 }
 
                 $name = $mySQLConnector->transformString($_POST['name']);
@@ -56,10 +44,9 @@ class Add_Recipe_Model extends Model
                 $ingredients = $mySQLConnector->transformString($_POST['ingredients']);
                 $cooking = $mySQLConnector->transformString($_POST['cooking']);
 
-                $query = "INSERT INTO " . $table . " (name, img, portions, calories, time, ingredients, cooking) VALUES ('$name', '$img', '$portions', $calories, '$time', '$ingredients', 
-					'$cooking');";
+                $query = "INSERT INTO " . $table . " (name, img, portions, calories, time, ingredients, cooking, username) VALUES ('$name', '$img', '$portions', $calories, '$time', '$ingredients', 
+					'$cooking', '$username');";
                 $mySQLConnector->executeQuery($query);
-
                 header("Location: /profile");
                 exit;
             }

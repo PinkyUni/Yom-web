@@ -17,11 +17,12 @@ class Add_Recipe_Controller extends Controller
 
     function action_index()
     {
+        if (isset($_POST['add_recipe'])) {
+            $this->model->add_recipe();
+        }
 //        $data = $this->model->add_recipe();
+        session_start();
         $this->view->generate('add_recipe_view.php');
     }
 
-    function action_add_recipe() {
-        $this->model->add_recipe();
-    }
 }

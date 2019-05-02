@@ -32,7 +32,7 @@
     </section>
     <section class="login">
         <a href="/login"><div class="logreg-button login-button">Login</div></a>
-        <a href="/login"><div class="logreg-button register-button">Register</div></a>
+        <a href="/register"><div class="logreg-button register-button">Register</div></a>
     </section>
     <section class="description-wrap">
         <h1 class="title-description">Description</h1>

@@ -1,7 +1,6 @@
 main {
     background-color: #efefef;
     padding: 2vw 14vw;
-    position: relative;
 }
 
 .main-container {
@@ -10,14 +9,6 @@ main {
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 2vw;
-}
-
-.btn_edit {
-    position: absolute;
-    right: 2vw;
-    border: 1px solid rgba(53, 53, 53, 0.72);
-    border-radius: 5px;
-    padding: 5px;
 }
 
 .basic-info {

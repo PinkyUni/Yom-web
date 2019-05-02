@@ -13,14 +13,18 @@ class Register_Controller extends Controller
         $this->view = new View();
     }
 
-    function action_index() {
-        $data = $this->model->add_user();
+    function action_index()
+    {
+        session_start();
+        if (isset($_SESSION['session_username']))
+            header("Location: /profile");
+        if (isset($_POST['register']))
+            $this->model->add_user();
         require_once 'application/core/cache.php';
         $cache = new Cache();
         $cache->read_cache();
         $this->view->generate('register_view.php');
         $cache->write_cache();
-        echo $data;
     }
 
 }

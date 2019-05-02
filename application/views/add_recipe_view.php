@@ -19,11 +19,11 @@
     </section>
     <div class="container">
         <div class="delimetr"><img src="../../img/delimetr_top.png"></div>
-        <form id="recipeForm" method="POST" action="/add_recipe/add_recipe" enctype="multipart/form-data">
+        <form id="recipeForm" method="POST" action="/add_recipe" enctype="multipart/form-data">
             <section class="additional-info">
                 <div class="form-element">
                     <label for="calories">Calories</label>
-                    <input type="text" name="calories" id="caloris" placeholder="143" required>
+                    <input type="number" name="calories" id="caloris" placeholder="143" required>
                 </div>
                 <div class="form-element">
                     <label for="time">Time</label>

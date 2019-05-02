@@ -22,7 +22,7 @@ class Ingredients_Model extends Model {
         $result = $mySQLConnector->getQueryResult($query);
 
         $data = array();
-        $i = 0;
+//        $i = 0;
         foreach ($result as $elem) {
 
             $name = $elem['name'];
@@ -37,13 +37,13 @@ class Ingredients_Model extends Model {
             $img1 = $elem['img1'];
             $img2 = $elem['img2'];
 
-            $data[$i] = array(
+            $data[] = array(
                 'name' => $name,
                 'text' => $text,
                 'img1' => $img1,
                 'img2' => $img2,
             );
-            $i++;
+//            $i++;
         }
 
         return $data;

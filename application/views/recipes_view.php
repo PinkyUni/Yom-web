@@ -14,6 +14,15 @@
 <h1>Recipes</h1>
 <main>
     <section class="recipes-galery">
+        <div class="galery-element" style="color: #585858;">
+            <a href="/user_recipes" class="element-link">
+                <div class="galery-img" style="background: url(../../img/r1_3.jpg); background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+                <div class="galery-text">
+                    <h3>User recipes</h3>
+                    <span class="short-description">Test other users' recipes and leave comments</span>
+                </div>
+            </a>
+        </div>
         <div class="galery-row">
             <div class="galery-element big">
                 <a href="#" class="element-link">

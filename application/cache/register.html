@@ -17,7 +17,7 @@
         <li><a href="/recipes">Recipes</a></li>
         <li><a href="/ingredients">Ingredients</a></li>
         <li><a href="/ideas">Ideas</a></li>
-        <a href="/profile" title="Your profile"><img class="user-icon" src="../../img/kek.jpg"></a>
+        <a href="/profile" title="Your profile"><img class="user-icon" src="../../img/users/anyakek/kek.jpg"</a>
     </ul>
     <span class="button-menu" onclick="openNav()">&#9776;</span>
     <div id="mySidenav" class="sidenav">
@@ -32,9 +32,10 @@
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("main").style.marginLeft = "250px";
         }
+
         function closeNav() {
             document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("main").style.marginLeft= "0";
+            document.getElementById("main").style.marginLeft = "0";
         }
     </script>
 </nav><main>
@@ -45,10 +46,14 @@
             <input type="password" name="password" id="password1" placeholder="Password" required>
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>
             <input type="email" name="email" placeholder="E-mail" required>
-            <div>
-                <input id="checkbox" type="checkbox" name="checkbox">
-                <label for="checkbox">Subscribe to our newsletter</label>
-            </div>
+<!--            <div>-->
+<!--                <input id="checkbox" type="checkbox" name="checkbox">-->
+<!--                <label for="checkbox">Subscribe to our newsletter</label>-->
+<!--            </div>-->
+            <section class="load-photo">
+                <input type="file" name="inputfile" id="file">
+                <label for="file" class="load-label">Choose a photo</label>
+            </section>
             <input type="submit" value="Register" name="register">
         </form>
     </div>
@@ -58,6 +63,7 @@
             document.getElementById("password2").onkeyup = validatePassword;
 
         };
+
         function validatePassword() {
             var pass2 = document.getElementById("password2").value;
             var pass1 = document.getElementById("password1").value;

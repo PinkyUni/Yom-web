@@ -8,9 +8,14 @@
 
 class login_model extends Model
 {
-    public function get_data()
+    public function get_user_photo()
     {
+        require_once 'constants.php';
+        require_once 'mysqlconnector.php';
 
+        $mysqlconnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $res = $mysqlconnector->getSingleValue("SELECT img FROM users WHERE name='" . $_SESSION['session_username'] . "';", 'img');
+        return $res;
     }
 
     public function has_user()
@@ -18,8 +23,7 @@ class login_model extends Model
         require_once 'constants.php';
         require_once 'mysqlconnector.php';
 
-        session_start();
-
+//        session_start();
         if (isset($_SESSION["session_username"])) {
             header("Location: /profile");
         }

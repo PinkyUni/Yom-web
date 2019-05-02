@@ -17,6 +17,7 @@ class Profile_Controller extends Controller
 
     function action_index()
     {
+        session_start();
         if ($this->model->check_session()) {
             $data = $this->model->get_data();
             $this->view->generate('profile_view.php', $data);

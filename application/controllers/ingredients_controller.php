@@ -14,8 +14,8 @@ class Ingredients_Controller extends Controller{
     }
 
     function action_index() {
+        session_start();
         $data = $this->model->get_data();
-
         require_once 'application/core/cache.php';
         $cache = new Cache();
         $cache->read_cache();

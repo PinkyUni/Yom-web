@@ -1,6 +1,6 @@
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" type="text/css" href="../../css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../../css/user_recipes.css">
     <link rel="stylesheet" href="../../config/css/for_all.css">
     <link rel="stylesheet" href="../../config/css/menu.css">
     <link rel="stylesheet" media="(max-width: 1200px)" href="../../config/css/menu_side.css">
@@ -12,42 +12,10 @@
 include 'header.php';
 ?>
 <main>
-    <section class="main">
-        <section class="user-info">
-            <div class="user-photo">
-                <img src="<?php echo "../../img/users/" . $data['name'] . '/' . $data['img'] ?>" class="photo">
-            </div>
-            <div class="user-name">
-                <span class="name"><?php echo $data['name'] ?></span>
-            </div>
-        </section>
-        <section class="info">
-            <div class="settings">
-                <a href="/login/logout"><i class="fas fa-sign-out-alt"></i></a>
-            </div>
-            <div class="recipes-info">
-                <div class="recipes-count">
-                    <div class="user-recipes">
-                        <span><?php echo $data['rec_count'] ?></span>
-                        <span class="name">Your recipes</span>
-                    </div>
-                    <div class="fav-recipes">
-                        <span><?php echo $data['fav_count'] ?></span>
-                        <span class="name">Favourite recipes</span>
-                    </div>
-                </div>
-                <div class="tabs">
-                    <span class="tab"><a href="/add_recipe""><i class="fas fa-plus"></i></a></span>
-                    <span class="tab">Recipes</span>
-                    <span class="tab">Favourites</span>
-                </div>
-            </div>
-        </section>
-    </section>
-    <section class="container">
+	<section class="container">
 
         <?php
-        $recipes = $data['recipes'];
+        $recipes = $data;
         if (count($recipes)) {
             $page_data = '';
             foreach ($recipes as $elem) {
@@ -94,10 +62,10 @@ include 'header.php';
                     $items .= $item_html;
                 }
 
-                $card = str_replace('{NAME}', $elem['name'], $card);
+                $card = str_replace('{NAME}', $elem['id'] . '. ' . $elem['name'], $card);
                 $img_path = '../../img/users/';
                 if (strcmp($elem["img"], 'empty.jpg') != 0)
-                    $img_path .= $data['name'] . '/';
+                    $img_path .= $elem["username"] . '/';
                 $style = 'style="background: url(' . $img_path . $elem["img"] . '); 
                              background-size: cover;
 	                         background-repeat: no-repeat;"';
@@ -106,13 +74,13 @@ include 'header.php';
                 $card = str_replace('{CALORIES}', $elem['calories'], $card);
                 $card = str_replace('{TIME}', $elem['time'], $card);
                 $card = str_replace('{INGREDIENT_LIST}', $items, $card);
-                $card = str_replace('{HREF}', $_SESSION['session_username'] . '/' . $elem['id'], $card);
+                $card = str_replace('{HREF}', $elem['username'] . '/' . $elem['id'], $card);
 
                 $page_data .= $card;
             }
             print $page_data;
         } else {
-            echo '<p style="text-align: center">List of recipes is empty.</p>';
+            echo '<p style="text-align: center">"List of recipes is empty."</p>';
         }
 
         ?>

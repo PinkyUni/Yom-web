@@ -8,6 +8,7 @@ class View {
     $template_file - общий для всех страниц шаблон;
     $data - массив, содержащий элементы контента страницы. Обычно заполняется в модели.
     */
+
     function generate($content_view, $data = null) {
 
         /*
@@ -15,6 +16,7 @@ class View {
         внутри которого будет встраиваться вид
         для отображения контента конкретной страницы.
         */
+
         include 'application/views/template_view.php';
     }
 
