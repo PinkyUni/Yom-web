@@ -19,14 +19,14 @@ include 'header.php';
             <input type="password" name="password" id="password1" placeholder="Password" required>
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>
             <input type="email" name="email" placeholder="E-mail" required>
-<!--            <div>-->
-<!--                <input id="checkbox" type="checkbox" name="checkbox">-->
-<!--                <label for="checkbox">Subscribe to our newsletter</label>-->
-<!--            </div>-->
-            <section class="load-photo">
-                <input type="file" name="inputfile" id="file">
-                <label for="file" class="load-label">Choose a photo</label>
-            </section>
+            <div>
+                <input id="checkbox" type="checkbox" name="checkbox">
+                <label for="checkbox">Subscribe to our newsletter</label>
+            </div>
+<!--            <section class="load-photo">-->
+<!--                <input type="file" name="inputfile" id="file">-->
+<!--                <label for="file" class="load-label">Choose a photo</label>-->
+<!--            </section>-->
             <input type="submit" value="Register" name="register">
         </form>
     </div>

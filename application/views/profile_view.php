@@ -11,6 +11,7 @@
 include 'header.php';
 ?>
 <main>
+    <div><a href="/profile/send">send</a></div>
     <section class="main">
         <section class="user-info">
             <div class="user-photo">
