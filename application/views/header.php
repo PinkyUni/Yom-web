@@ -4,7 +4,7 @@
         <li><a href="/recipes">Recipes</a></li>
         <li><a href="/ingredients">Ingredients</a></li>
         <li><a href="/ideas">Ideas</a></li>
-        <a href="/profile" title="Your profile"><img class="user-icon" src="<?php if (strstr($_SERVER['REQUEST_URI'], "/recipe/")) echo "../../../"?>../../img/users/<?php
+        <a href="/profile" title="Your profile"><img class="user-icon" src="<?php if (strstr($_SERVER['REQUEST_URI'], "/recipe/")) echo "../../../";?>../../img/users/<?php
             if (isset($_SESSION['session_username'])) {
                 echo $_SESSION['session_username'] . '/' . $_SESSION['user_img'];
             } else {

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../../../../../config/css/menu.css">
     <link rel="stylesheet" media="(max-width: 980px)" href="../../../../../config/css/menu_side.css">
     <link rel="stylesheet" href="../../../../../css/recipe.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
 </head>
 <body>
 
@@ -12,7 +13,7 @@ include 'header.php';
 ?>
 
 <main>
-    <div class="btn_edit">Click</div>
+    <a href="<?php $uri = $_SERVER['REQUEST_URI']; $uri = str_replace('recipe', 'recipe_edit', $uri); echo $uri;?>"><div class="btn_edit"><i class="far fa-edit"></i>Edit</div></a>
     <div class="main-container">
         <div class="basic-info">
             <h1><?php echo $data['recipe']['name'] ?></h1>

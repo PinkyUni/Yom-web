@@ -11,6 +11,62 @@ main {
     padding-bottom: 2vw;
 }
 
+form {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea,
+input {
+    width: 60%;
+    font-family: Neucha;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin: 5px 0;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    text-decoration: none;
+    line-height: 1.4em;
+    outline: none;
+}
+
+.recipe-name {
+    margin: 2vw;
+    font-size: 2vw;
+    padding: 0.5vw;
+    width: 30%;
+}
+
+.cooking-el > input {
+    width: 50%;
+}
+
+textarea {
+    width: 90%;
+    height: 15vw;
+}
+
+textarea:focus {
+    border: 1px solid #E8A701;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+input[type=submit] {
+    width: auto;
+    background-color: #E8A701;
+    color: white;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+input[type=submit]:hover {
+    background-color: #DA9C00;
+}
+
 .basic-info {
     display: flex;
     flex-direction: column;
@@ -38,6 +94,7 @@ h1 {
     border-radius: 5px;
     box-shadow: 0 0 1px #585858;
     max-height: 5vw;
+    width: 50%;
     margin: 2vw 0;
 }
 
