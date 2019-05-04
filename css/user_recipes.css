@@ -50,13 +50,25 @@
 	padding: 0 2vw;
 }
 
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
 .recipe-name {
-	height: 3vw;
 	font-size: 1.7vw;
 	font-family: Neucha;
 	font-weight: bold;
 	text-align: center;
-	padding-bottom: 0.5vw;
+	padding-left: 2vw;
+}
+
+.fa-star {
+	font-size: 1.7vw;
+}
+
+.fa-star:hover {
+	color: #ffb000;
 }
 
 .main-info-el {

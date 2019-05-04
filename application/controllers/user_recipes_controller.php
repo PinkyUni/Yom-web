@@ -17,7 +17,9 @@ class User_Recipes_Controller extends Controller
 
     public function action_index()
     {
+        session_start();
         $data = $this->model->get_data();
+        $_SESSION['uri'] = $_SERVER['REQUEST_URI'];
         $this->view->generate('user_recipes_view.php', $data);
     }
 

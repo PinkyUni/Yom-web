@@ -28,6 +28,7 @@ class Login_Controller extends Controller {
             $_SESSION['session_username'] = $_POST['username'];
             $_SESSION['user_img'] = $this->model->get_user_photo();
             echo $_SESSION['user_img'];
+            array_map('unlink', glob("application/cache/*.html"));
             header("Location: /profile");
         } 
     }
@@ -36,8 +37,8 @@ class Login_Controller extends Controller {
         session_start();
         unset($_SESSION['session_username']);
         unset($_SESSION['user_img']);
-//        unset($_COOKIE);
         session_destroy();
+        array_map('unlink', glob("application/cache/*.html"));
         header("location: /login");
     }
 

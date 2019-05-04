@@ -24,14 +24,21 @@ class Register_Model extends Model
         if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
             $username = $mysqlconnector->transformString($_POST['username']);
-            $email = $mysqlconnector->transformString($_POST['email']);
-            $password = $mysqlconnector->transformString($_POST['password']);
 
             $query = "SELECT * FROM users WHERE name='" . $username . "';";
             $res = $mysqlconnector->getQueryResultWithoutTransformation($query);
             $numrows = $mysqlconnector->getRowsNumber($res);
 
             if ($numrows == 0) {
+
+                $email = $mysqlconnector->transformString($_POST['email']);
+                $password = $mysqlconnector->transformString($_POST['password']);
+
+                if (isset($_POST['checkbox'])) {
+                    $subscribed = "yes";
+                } else {
+                    $subscribed = "no";
+                }
 
                 $img = "empty.jpg";
 
@@ -46,7 +53,7 @@ class Register_Model extends Model
                     }
                 }
 
-                $sql = "INSERT INTO users (name, email, password, img) VALUES ('$username','$email', '$password', '$img');";
+                $sql = "INSERT INTO users (name, email, password, img, subscribed) VALUES ('$username','$email', '$password', '$img', '$subscribed');";
                 $result = $mysqlconnector->getQueryResultWithoutTransformation($sql);
                 if ($result) {
                     header("Location: /profile");

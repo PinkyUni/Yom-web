@@ -23,10 +23,10 @@ include 'header.php';
                 <input id="checkbox" type="checkbox" name="checkbox">
                 <label for="checkbox">Subscribe to our newsletter</label>
             </div>
-<!--            <section class="load-photo">-->
-<!--                <input type="file" name="inputfile" id="file">-->
-<!--                <label for="file" class="load-label">Choose a photo</label>-->
-<!--            </section>-->
+            <section class="load-photo">
+                <input type="file" name="inputfile" id="file">
+                <label for="file" class="load-label">Choose a photo</label>
+            </section>
             <input type="submit" value="Register" name="register">
         </form>
     </div>

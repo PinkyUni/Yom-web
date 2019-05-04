@@ -15,7 +15,7 @@ include 'header.php';
 	<section class="container">
 
         <?php
-        $recipes = $data;
+        $recipes = $data['recipes'];
         if (count($recipes)) {
             $page_data = '';
             foreach ($recipes as $elem) {
@@ -23,7 +23,10 @@ include 'header.php';
                             <div class="img-el" {IMAGE}>
                             </div>
                             <div class="info-el">
-                                <span class="recipe-name">{NAME}</span>
+                                <div class="row">
+                                    <div class="recipe-name">{NAME}</div>
+                                    <a href="/profile/add_to_favourite/{HREF}" ><i class="fas fa-star" style="{STYLE}"></i></a>
+                                </div>
                                 <div class="main-info-el">
                                     <div class="ingredients">
                                         <span class="ing-title"><u>Ingredients:</u></span>
@@ -75,6 +78,12 @@ include 'header.php';
                 $card = str_replace('{TIME}', $elem['time'], $card);
                 $card = str_replace('{INGREDIENT_LIST}', $items, $card);
                 $card = str_replace('{HREF}', $elem['username'] . '/' . $elem['id'], $card);
+
+                if (strpos($data['fav_ids'], $elem['id']) === FALSE) {
+                    $card = str_replace('{STYLE}', 'color: #585858;', $card);
+                } else {
+                    $card = str_replace('{STYLE}', 'color: #ffb000;', $card);
+                }
 
                 $page_data .= $card;
             }

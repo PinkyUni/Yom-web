@@ -16,7 +16,12 @@ class Profile_Model extends Model
         require_once 'mysqlconnector.php';
 
         $this->userdata = $this->get_user_data();
-        $recipes = $this->get_recipes();
+
+        $vars = explode('/', $_SERVER['REQUEST_URI']);
+        if (!empty($vars[2]) && strcmp($vars[2], 'favourites') == 0)
+            $recipes = $this->get_favourite_recipes();
+        else
+            $recipes = $this->get_recipes();
         $this->userdata['recipes'] = $recipes;
         return $this->userdata;
     }
@@ -32,7 +37,6 @@ class Profile_Model extends Model
         foreach ($data as $elem) {
             $name = $elem['name'];
             $img = $elem['img'];
-            $favTable = $elem['favTable'];
         }
 
         $query = "SELECT * FROM recipes WHERE username =  '" . $_SESSION['session_username'] . "';";
@@ -41,18 +45,19 @@ class Profile_Model extends Model
         if ($res)
             $rec_count = $mySQLConnector->getRowsNumber($res);
 
-        $query = "SELECT * FROM $favTable;";
-        $res = $mySQLConnector->getQueryResultWithoutTransformation($query);
+        $query = "SELECT fav_recipes FROM users WHERE name =  '" . $_SESSION['session_username'] . "';";
+        $fav_recipes = $mySQLConnector->getSingleValue($query, 'fav_recipes');
+        $faves = explode(' ', $fav_recipes);
         $fav_count = 0;
-        if ($res)
-            $fav_count = $mySQLConnector->getRowsNumber($res);
+        if (is_array($faves))
+            $fav_count = count($faves) - 1;
 
         $userdata = array(
             'name' => $name,
             'img' => $img,
             'rec_count' => $rec_count,
-            'favTable' => $favTable,
             'fav_count' => $fav_count,
+            'fav_recipes' => $fav_recipes,
         );
         return $userdata;
     }
@@ -67,9 +72,8 @@ class Profile_Model extends Model
         $data = $mySQLConnector->getQueryResult($query);
 
         $recipes = array();
-        $i = 0;
         foreach ($data as $elem) {
-            $recipes[$i] = array(
+            $recipes[] = array(
                 'id' => $elem['id'],
                 'name' => $elem['name'],
                 'img' => $elem['img'],
@@ -79,9 +83,67 @@ class Profile_Model extends Model
                 'ingredients' => $elem['ingredients'],
                 'cooking' => $elem['cooking'],
             );
-            $i++;
         }
         return $recipes;
+    }
+
+    public function get_favourite_recipes()
+    {
+        if (isset($_SESSION['session_username'])) {
+
+            require_once 'constants.php';
+            require_once 'mysqlconnector.php';
+
+            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+
+            $query = "SELECT fav_recipes FROM users WHERE name = '" . $_SESSION['session_username'] . "';";;
+            $result = $mySQLConnector->getSingleValue($query, 'fav_recipes');
+
+            $recipes = array();
+            $ids = explode(' ', $result);
+            foreach ($ids as $id) {
+                if (!empty($id)) {
+                    $query = "SELECT * FROM recipes WHERE id = $id;";
+                    $elem = $mySQLConnector->getQueryResult($query);
+
+                    $elem = $elem[0];
+                    $recipes[] = array(
+                        'id' => $elem['id'],
+                        'name' => $elem['name'],
+                        'img' => $elem['img'],
+                        'portions' => $elem['portions'],
+                        'calories' => $elem['calories'],
+                        'time' => date("h:i", strtotime($elem['time'])),
+                        'ingredients' => $elem['ingredients'],
+                        'cooking' => $elem['cooking'],
+                    );
+                }
+            }
+            return $recipes;
+        }
+    }
+
+    public function add_to_favourite($id)
+    {
+        if (isset($_SESSION['session_username'])) {
+
+            require_once 'constants.php';
+            require_once 'mysqlconnector.php';
+
+            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+
+            $query = "SELECT fav_recipes FROM users WHERE name = '" . $_SESSION['session_username'] . "';";;
+            $result = $mySQLConnector->getSingleValue($query, 'fav_recipes');
+
+            if (strpos($result, $id) === FALSE) {
+                $query = "UPDATE users SET fav_recipes = CONCAT(fav_recipes, '$id ') WHERE name = '" . $_SESSION['session_username'] . "';";
+                $mySQLConnector->executeQuery($query);
+            } else {
+                $fav = str_replace("$id ", "", $result);
+                $query = "UPDATE users SET fav_recipes = '$fav' WHERE name = '" . $_SESSION['session_username'] . "';";
+                $mySQLConnector->executeQuery($query);
+            }
+        }
     }
 
     public function check_session()
