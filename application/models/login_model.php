@@ -10,20 +10,17 @@ class login_model extends Model
 {
     public function get_user_photo()
     {
-        require_once 'constants.php';
         require_once 'mysqlconnector.php';
 
-        $mysqlconnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mysqlconnector = MySQLConnector::getInstance();
         $res = $mysqlconnector->getSingleValue("SELECT img FROM users WHERE name='" . $_SESSION['session_username'] . "';", 'img');
         return $res;
     }
 
     public function has_user()
     {
-        require_once 'constants.php';
         require_once 'mysqlconnector.php';
 
-//        session_start();
         if (isset($_SESSION["session_username"])) {
             header("Location: /profile");
         }
@@ -31,8 +28,7 @@ class login_model extends Model
         $message = '';
         if (isset($_POST["login"])) {
 
-            $mysqlconnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-
+            $mysqlconnector = MySQLConnector::getInstance();
             if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
                 $username = $mysqlconnector->transformString($_POST['username']);

@@ -65,7 +65,7 @@ include 'header.php';
                     $items .= $item_html;
                 }
 
-                $card = str_replace('{NAME}', $elem['id'] . '. ' . $elem['name'], $card);
+                $card = str_replace('{NAME}', $elem['name'], $card);
                 $img_path = '../../img/users/';
                 if (strcmp($elem["img"], 'empty.jpg') != 0)
                     $img_path .= $elem["username"] . '/';

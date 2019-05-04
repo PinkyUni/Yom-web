@@ -18,12 +18,13 @@ class Register_Controller extends Controller
         session_start();
         if (isset($_SESSION['session_username']))
             header("Location: /profile");
+        $message = '';
         if (isset($_POST['register']))
-            $this->model->add_user();
+            $message = $this->model->add_user();
         require_once 'application/core/cache.php';
         $cache = new Cache();
         $cache->read_cache();
-        $this->view->generate('register_view.php');
+        $this->view->generate('register_view.php', $message);
         $cache->write_cache();
     }
 

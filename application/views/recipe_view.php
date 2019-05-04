@@ -12,8 +12,14 @@
 include 'header.php';
 ?>
 
-<main>
-    <a href="<?php $uri = $_SERVER['REQUEST_URI']; $uri = str_replace('recipe', 'recipe_edit', $uri); echo $uri;?>"><div class="btn_edit"><i class="far fa-edit"></i>Edit</div></a>
+<main><?php
+        if (isset($_SESSION['session_username']) && strcmp($data['recipe']['username'], $_SESSION['session_username']) == 0) {
+            $el = '<a href="{URI}"><div class="btn_edit"><i class="far fa-edit"></i>Edit</div></a>';
+            $uri = $_SERVER['REQUEST_URI'];
+            $uri = str_replace('recipe', 'recipe_edit', $uri);
+            $el = str_replace("{URI}", $uri, $el);
+            echo $el;
+        }?>
     <div class="main-container">
         <div class="basic-info">
             <h1><?php echo $data['recipe']['name'] ?></h1>
@@ -94,10 +100,10 @@ include 'header.php';
                     </div>';
 
             $img = "../../../../../img/users/";
-            if (strcmp($data['recipe']['img'], 'empty.jpg') != 0)
-                $img .= $_SESSION['session_username'] . "/" . $_SESSION['user_img'];
+            if (strcmp($comment['img'], 'empty.jpg') != 0)
+                $img .= $comment['username'] . "/" . $comment['img'];
             else
-                $img .= $_SESSION['user_img'];
+                $img .= $comment['img'];
 
             $item = str_replace('{IMAGE}', $img, $item);
             $item = str_replace("{USERNAME}", $comment['username'], $item);
@@ -111,7 +117,6 @@ include 'header.php';
             $item = str_replace("{COMMENT_TEXT}", $text, $item);
             $item = str_replace("{TIME}", $comment['time'], $item);
 
-            echo $img;
             $comments .= $item;
 
         }
@@ -124,11 +129,13 @@ include 'header.php';
             <div class="form-content">
                 <div class="col">
                     <img src="../../../../../img/users/<?php
-                    if (strcmp($data['recipe']['img'], 'empty.jpg') != 0)
-                         echo $_SESSION['session_username'] . "/" . $_SESSION['user_img'];
-                    else
+                    if (!isset($_SESSION['session_username'])) {
+                        echo 'cat-profile.png';
+                    } elseif (strcmp($_SESSION['user_img'], 'empty.jpg') != 0) {
+                        echo $_SESSION['session_username'] . '/' . $_SESSION['user_img'];
+                    } else {
                         echo $_SESSION['user_img'];
-
+                    }
                     ?>" class="user-icon">
                 </div>
                 <div class="textarea col">

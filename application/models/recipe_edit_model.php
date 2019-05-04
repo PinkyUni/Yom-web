@@ -17,12 +17,11 @@ class Recipe_Edit_Model extends Model
         return $data;
     }
 
-    public function get_recipe($id)
+    private function get_recipe($id)
     {
-        require_once 'constants.php';
         require_once 'mysqlconnector.php';
 
-        $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $table = "recipes";
 
@@ -51,15 +50,11 @@ class Recipe_Edit_Model extends Model
     public function update_recipe($id) {
 
         if (isset($_POST['save_recipe'])) {
-            $uri = $_SESSION['uri'];
-
-            require_once 'constants.php';
             require_once 'mysqlconnector.php';
 
-            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+            $mySQLConnector = MySQLConnector::getInstance();
 
             $table = "recipes";
-
             $query = "SELECT * FROM $table WHERE id = $id";
             $data = $mySQLConnector->getQueryResult($query);
 

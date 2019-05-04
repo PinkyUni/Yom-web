@@ -3,22 +3,36 @@
 class MySQLConnector
 {
 
-    private $connection;
+    private static $connection;
+    private static $_instance = null;
 
-    public function __construct($host, $user, $password, $db_name)
+    private function __construct()
     {
-        $this->connection = mysqli_connect($host, $user, $password, $db_name);
-        mysqli_query($this->connection, "SET NAMES 'utf8'");
+        require_once 'constants.php';
+        self::$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        mysqli_query(self::$connection, "SET NAMES 'utf8'");
+    }
+
+    private function __clone () {}
+    private function __wakeup () {}
+
+    public static function getInstance()
+    {
+        if (self::$_instance != null) {
+            return self::$_instance;
+        }
+
+        return new self;
     }
 
     public function executeQuery($query)
     {
-        mysqli_query($this->connection, $query);
+        return mysqli_query(self::$connection, $query);
     }
 
     public function getQueryResult($query)
     {
-        $result = mysqli_query($this->connection, $query);
+        $result = mysqli_query(self::$connection, $query);
         $data = array();
         for (; $row = mysqli_fetch_assoc($result); $data[] = $row) ;
         return $data;
@@ -26,7 +40,7 @@ class MySQLConnector
 
     function getSingleValue($query, $columnName)
     {
-        $q = mysqli_query($this->connection, $query);
+        $q = mysqli_query(self::$connection, $query);
         $f = mysqli_fetch_assoc($q);
         $result = $f[$columnName];
         return $result;
@@ -39,12 +53,12 @@ class MySQLConnector
 
     public function getQueryResultWithoutTransformation($query)
     {
-        return mysqli_query($this->connection, $query);
+        return mysqli_query(self::$connection, $query);
     }
 
     public function transformString($string)
     {
-        return htmlentities(mysqli_real_escape_string($this->connection, $string));
+        return htmlentities(mysqli_real_escape_string(self::$connection, $string));
     }
 
     public function getRowsNumber($res)
@@ -54,7 +68,7 @@ class MySQLConnector
 
     function existsTable($tablename)
     {
-        $table_list = mysqli_query($this->connection, "SHOW TABLES from yom;");
+        $table_list = mysqli_query(self::$connection, "SHOW TABLES from yom;");
         while ($row = mysqli_fetch_row($table_list)) {
             if (strcmp($tablename, $row[0]) == 0) {
                 return true;

@@ -11,7 +11,6 @@ class User_Recipes_Model extends Model
     public function get_data()
     {
         require_once 'mysqlconnector.php';
-        require_once 'constants.php';
 
         $data['recipes'] = $this->get_recipes();
         $data['fav_ids'] = $this->get_favourite_ids();
@@ -19,7 +18,7 @@ class User_Recipes_Model extends Model
     }
 
     private function get_recipes() {
-        $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $table = 'recipes';
         $query = "SELECT * FROM $table;";
@@ -44,9 +43,8 @@ class User_Recipes_Model extends Model
 
     private function get_favourite_ids() {
 
-        $result = '';
         if (isset($_SESSION['session_username'])) {
-            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+            $mySQLConnector = MySQLConnector::getInstance();
 
             $query = "SELECT fav_recipes FROM users WHERE name = '" . $_SESSION['session_username'] . "';";;
             $result = $mySQLConnector->getSingleValue($query, 'fav_recipes');

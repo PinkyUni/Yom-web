@@ -12,7 +12,6 @@ class Profile_Model extends Model
 
     public function get_data()
     {
-        require_once 'constants.php';
         require_once 'mysqlconnector.php';
 
         $this->userdata = $this->get_user_data();
@@ -28,7 +27,7 @@ class Profile_Model extends Model
 
     private function get_user_data()
     {
-        $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $username = $_SESSION["session_username"];
         $query = "SELECT * FROM users WHERE name = '$username';";
@@ -62,9 +61,9 @@ class Profile_Model extends Model
         return $userdata;
     }
 
-    function get_recipes()
+    private function get_recipes()
     {
-        $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $table = 'recipes';
         $username = $_SESSION['session_username'];
@@ -91,10 +90,9 @@ class Profile_Model extends Model
     {
         if (isset($_SESSION['session_username'])) {
 
-            require_once 'constants.php';
             require_once 'mysqlconnector.php';
 
-            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+            $mySQLConnector = MySQLConnector::getInstance();
 
             $query = "SELECT fav_recipes FROM users WHERE name = '" . $_SESSION['session_username'] . "';";;
             $result = $mySQLConnector->getSingleValue($query, 'fav_recipes');
@@ -127,10 +125,9 @@ class Profile_Model extends Model
     {
         if (isset($_SESSION['session_username'])) {
 
-            require_once 'constants.php';
             require_once 'mysqlconnector.php';
 
-            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+            $mySQLConnector = MySQLConnector::getInstance();
 
             $query = "SELECT fav_recipes FROM users WHERE name = '" . $_SESSION['session_username'] . "';";;
             $result = $mySQLConnector->getSingleValue($query, 'fav_recipes');

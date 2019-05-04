@@ -11,18 +11,13 @@ class Ingredients_Model extends Model {
     function get_data()
     {
         include 'mysqlconnector.php';
-        $host = 'localhost';
-        $user = 'root';
-        $password = 'suka';
-        $db_name = 'Yom';
-        $mySQLConnector = new MySQLConnector($host, $user, $password, $db_name);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $table = 'ingredients';
         $query = "SELECT * FROM $table;";
         $result = $mySQLConnector->getQueryResult($query);
 
         $data = array();
-//        $i = 0;
         foreach ($result as $elem) {
 
             $name = $elem['name'];
@@ -43,7 +38,6 @@ class Ingredients_Model extends Model {
                 'img1' => $img1,
                 'img2' => $img2,
             );
-//            $i++;
         }
 
         return $data;

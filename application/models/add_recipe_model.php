@@ -14,10 +14,9 @@ class Add_Recipe_Model extends Model
         session_start();
         if (isset($_SESSION["session_username"])) {
 
-            require_once 'constants.php';
             require_once 'mysqlconnector.php';
 
-            $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+            $mySQLConnector = MySQLConnector::getInstance();
 
             $username = $_SESSION['session_username'];
             $table = "recipes";

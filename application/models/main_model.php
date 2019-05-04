@@ -7,16 +7,14 @@ class Main_Model extends Model
     {
 
         require_once 'mysqlconnector.php';
-        require_once 'constants.php';
 
-        $mySQLConnector = new MySQLConnector(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+        $mySQLConnector = MySQLConnector::getInstance();
 
         $table = 'main';
         $query = "SELECT * FROM " . $table . ";";
         $result = $mySQLConnector->getQueryResult($query);
 
         $data = array();
-        $i = 0;
         foreach ($result as $elem) {
 
             $name = $elem['name'];
@@ -31,13 +29,12 @@ class Main_Model extends Model
 
             $img = $elem['image'];
 
-            $data[$i] = array(
+            $data[] = array(
                 'name' => $name,
                 'url' => $url,
                 'text' => $text,
                 'img' => $img,
             );
-            $i++;
         }
 
         return $data;
