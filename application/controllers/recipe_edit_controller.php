@@ -25,9 +25,14 @@ class Recipe_Edit_Controller extends Controller
 
     public function action_save_changes() {
         session_start();
-        $vars = explode('/', $_SESSION['uri']);
-        $this->model->update_recipe($vars[3]);
-        header("Location: " . $_SESSION['uri']);
+        $vars = explode('/', $_SESSION['new_uri']);
+        if (isset($_POST['save_recipe'])) {
+            $this->model->update_recipe($vars[3]);
+            header("Location: " . $_SESSION['new_uri']);
+        } elseif (isset($_POST['delete_recipe'])) {
+            $this->model->delete_recipe($vars[3]);
+            header("Location: " . $_SESSION['uri']);
+        }
     }
 
 

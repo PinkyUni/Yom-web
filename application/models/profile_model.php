@@ -47,9 +47,10 @@ class Profile_Model extends Model
         $query = "SELECT fav_recipes FROM users WHERE name =  '" . $_SESSION['session_username'] . "';";
         $fav_recipes = $mySQLConnector->getSingleValue($query, 'fav_recipes');
         $faves = explode(' ', $fav_recipes);
+        $faves = \array_diff($faves, ['']);
         $fav_count = 0;
         if (is_array($faves))
-            $fav_count = count($faves) - 1;
+            $fav_count = count($faves);
 
         $userdata = array(
             'name' => $name,

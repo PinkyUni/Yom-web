@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" href="../../config/css/for_all.css">
+    <link rel="stylesheet" href="../../config/css/menu.css">
+    <link rel="stylesheet" media="(max-width: 980px)" href="../../config/css/menu_side.css">
+    <link rel="stylesheet" href="../../css/error.css">
+</head>
+<body>
+
+<nav>
+    <a class="title" href="/">Yom</a>
+    <ul class="main-menu">
+        <li><a href="/recipes">Recipes</a></li>
+        <li><a href="/ingredients">Ingredients</a></li>
+        <li><a href="/ideas">Ideas</a></li>
+        <a href="/profile" title="Your profile"><img class="user-icon" src="../../img/users/cat-profile.png"</a>
+    </ul>
+    <span class="button-menu" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/recipes">Recipes</a>
+        <a href="/ingredients">Ingredients</a>
+        <a href="/ideas">Ideas</a>
+        <a href="/login">Login</a>
+    </div>
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+</nav>
+<main>
+    <p>404</p>
+    <div>
+        Page not found :c
+    </div>
+</main>
+
+<section class="bottom-galery">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</section>
+<footer>
+    <div class="footer-element">
+        <span><a href="/">Yom</a></span>
+    </div>
+    <div class="footer-element">
+        <ul class="footer-menu">
+            <li><a href="/recipes">Recipes</a></li>
+            <li><a href="/ingredients">Ingredients</a></li>
+            <li><a href="/ideas">Ideas</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </div>
+    <div class="footer-element">
+        <ul class="footer-menu">
+            <li>The first site</li>
+            <li>Made by Anya</li>
+            <li>Project for WT</li>
+            <li><a href="https://www.bsuir.by">© BSUIR, 2019</a></li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>

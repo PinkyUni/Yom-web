@@ -47,8 +47,8 @@ class Recipe_Edit_Model extends Model
             header("Location: /error");
     }
 
-    public function update_recipe($id) {
-
+    public function update_recipe($id)
+    {
         if (isset($_POST['save_recipe'])) {
             require_once 'mysqlconnector.php';
 
@@ -59,10 +59,36 @@ class Recipe_Edit_Model extends Model
             $data = $mySQLConnector->getQueryResult($query);
 
             if ($data) {
-                $query = "UPDATE $table SET name = '" . $_POST["name"] . "', portions = '". $_POST['portions'] . "', calories = '" . $_POST['calories'] . "', 
+                $query = "UPDATE $table SET name = '" . $_POST["name"] . "', portions = '" . $_POST['portions'] . "', calories = '" . $_POST['calories'] . "', 
                 time = '" . $_POST['time'] . "', ingredients = '" . $_POST['ingredients'] . "', cooking = '" . $_POST['cooking'] . "' WHERE id = $id;";
                 $mySQLConnector->executeQuery($query);
             }
+        }
+    }
+
+    public function delete_recipe($id)
+    {
+        if (isset($_POST['delete_recipe'])) {
+            require_once 'mysqlconnector.php';
+
+            $mySQLConnector = MySQLConnector::getInstance();
+
+            $query = "DELETE FROM recipes WHERE id = $id";
+            $mySQLConnector->executeQuery($query);
+
+            $query = "SELECT * FROM users;";
+            $users = $mySQLConnector->getQueryResult($query);
+
+            foreach ($users as $user) {
+                if (!empty($user['fav_recipes'])) {
+                    $faves = str_replace($id, '', $user['fav_recipes']);
+                    $query = "UPDATE users SET fav_recipes = '$faves' WHERE name = '" . $user['name'] . "';";
+                    $mySQLConnector->executeQuery($query);
+                }
+            }
+
+            $query = "DELETE FROM comments WHERE id = $id;";
+            $mySQLConnector->executeQuery($query);
         }
     }
 

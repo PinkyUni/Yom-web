@@ -11,7 +11,7 @@
 include 'header.php';
 ?>
 
-<?php $uri = $_SERVER['REQUEST_URI']; $uri = str_replace('recipe_edit', 'recipe', $uri); $_SESSION['uri'] = $uri;?>
+<?php $uri = $_SERVER['REQUEST_URI']; $uri = str_replace('recipe_edit', 'recipe', $uri); $_SESSION['new_uri'] = $uri;?>
 <main>
     <div class="main-container">
         <form id="EditRecipe" method="POST" action="/recipe_edit/save_changes" enctype="multipart/form-data">
@@ -65,6 +65,7 @@ include 'header.php';
                 </textarea>
             </div>
             <input type="submit" value="Save changes" name="save_recipe">
+            <input type="submit" value="Delete recipe" name="delete_recipe">
         </form>
     </div>
 </main>

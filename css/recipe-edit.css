@@ -55,18 +55,6 @@ label:hover {
     cursor: pointer;
 }
 
-input[type=submit] {
-    width: auto;
-    background-color: #E8A701;
-    color: white;
-    cursor: pointer;
-    margin: 20px 0;
-}
-
-input[type=submit]:hover {
-    background-color: #DA9C00;
-}
-
 .basic-info {
     display: flex;
     flex-direction: column;
@@ -219,17 +207,28 @@ textarea:focus {
 
 input[type=submit] {
     width: auto;
-    background-color: #E8A701;
     color: white;
     cursor: pointer;
-    margin: 20px 0;
     border-radius: 5px;
 }
 
-input[type=submit]:hover {
-  background-color: #DA9C00;
+input[name="save_recipe"] {
+    background-color: #DA9C00;
+    margin: 0;
 }
 
+input[name="save_recipe"]:hover {
+  background-color: #E8A701;
+}
+
+input[name="delete_recipe"] {
+    background-color: orangered;
+    margin-bottom: 20px 0;
+}
+
+input[name="delete_recipe"]:hover {
+    background-color: red;
+}
 
 .bottom-galery div:nth-child(1) {
     background: url(../img/recipe1.jpg) no-repeat center center;
