@@ -34,6 +34,8 @@ class Login_Controller extends Controller
             array_map('unlink', glob("application/cache/*.html"));
             if ($_SESSION['session_username'] != 'admin')
                 header("Location: /profile");
+            else
+                header("Location: /comments_manager");
         }
     }
 

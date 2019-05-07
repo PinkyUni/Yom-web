@@ -65,12 +65,13 @@ class Recipe_Model extends Model
                 date_default_timezone_set('Europe/Minsk');
                 $time = date("Y-m-d H:i:s");
 
-                $query = "INSERT INTO comments (id, username, img, text, time) VALUES ($id, '$username', '$img', '$text', '$time');";
+                $query = "INSERT INTO comments (recipe_id, username, img, text, time, accepted) VALUES ($id, '$username', '$img', '$text', '$time', 0);";
                 $res = $mySQLConnector->executeQuery($query);
 
-                if ($res)
+                if ($res) {
                     $this->send_email($id, $text);
-
+                    $this->mail_admin();
+                }
             }
         } else {
             header("Location: /login");
@@ -104,6 +105,26 @@ class Recipe_Model extends Model
             <h3 style="color: #585858;">' . $username . ' posted a new comment under your recipe:</h3><div style="text-align: left;padding: 1vw;margin-bottom: 1vw;border: 1px solid #cccccc;border-radius: 10px;">
         ' . $text . '</div><div>Check <a href=' . $link . ' style="color: #e2b03f;">here.</a></div></article></section>';
 
+            $headers = "From: Yom.com <yom.com.recipes@gmail.com>\r\n";
+            $headers .= "Reply-To: keklolpukger@gmail.com\r\n";
+            $headers .= "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
+
+            $res = mail($email, $subject, $message, $headers);
+        }
+    }
+
+    private function mail_admin($username = 'admin') {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+            $query = "SELECT email FROM users WHERE name = '$username';";
+            $email = $mySQLConnector->getSingleValue($query, 'email');
+
+            $subject = "New comment!";
+
+            $message = "<p>There's a new comment! Check it <a href='yom.com/comments_manager' style='color: gold;'>here</a></p>";
 
             $headers = "From: Yom.com <yom.com.recipes@gmail.com>\r\n";
             $headers .= "Reply-To: keklolpukger@gmail.com\r\n";
@@ -111,8 +132,6 @@ class Recipe_Model extends Model
             $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
 
             $res = mail($email, $subject, $message, $headers);
-            var_dump($res);
-        }
     }
 
     public function get_comments($id)
@@ -124,7 +143,7 @@ class Recipe_Model extends Model
         $table = "comments";
         $comments = array();
 
-        $query = "SELECT * FROM $table WHERE id = $id;";
+        $query = "SELECT * FROM $table WHERE recipe_id = $id AND accepted = 1;";
         $data = $mySQLConnector->getQueryResult($query);
 
         foreach ($data as $elem) {
