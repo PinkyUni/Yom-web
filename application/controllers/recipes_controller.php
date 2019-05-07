@@ -6,15 +6,11 @@
  * Time: 16:01
  */
 
-class Recipes_Controller extends Controller {
+class Recipes_Controller extends Controller
+{
 
-    function __construct() {
-//        $this->model = new Recipes_Model();
-        $this->view = new View();
-    }
-
-    function action_index() {
-//        $data = $this->model->get_data();
+    function action_index()
+    {
         session_start();
         require_once 'application/core/cache.php';
         $cache = new Cache();
@@ -22,5 +18,4 @@ class Recipes_Controller extends Controller {
         $this->view->generate('recipes_view.php');
         $cache->write_cache();
     }
-
 }

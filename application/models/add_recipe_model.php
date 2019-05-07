@@ -9,9 +9,8 @@
 class Add_Recipe_Model extends Model
 {
 
-    public function add_recipe() {
-
-        session_start();
+    public function add_recipe()
+    {
         if (isset($_SESSION["session_username"])) {
 
             require_once 'mysqlconnector.php';
@@ -21,7 +20,7 @@ class Add_Recipe_Model extends Model
             $username = $_SESSION['session_username'];
             $table = "recipes";
 
-            if(isset($_POST['name'])){
+            if (isset($_POST['name'])) {
 
                 $img = "empty.jpg";
 
@@ -36,12 +35,12 @@ class Add_Recipe_Model extends Model
                     }
                 }
 
-                $name = $mySQLConnector->transformString($_POST['name']);
-                $portions = $mySQLConnector->transformString($_POST['portions']);
+                $name = trim($mySQLConnector->transformString($_POST['name']));
+                $portions = trim($mySQLConnector->transformString($_POST['portions']));
                 $calories = $mySQLConnector->transformString($_POST['calories']);
                 $time = $mySQLConnector->transformString($_POST['time']);
-                $ingredients = $mySQLConnector->transformString($_POST['ingredients']);
-                $cooking = $mySQLConnector->transformString($_POST['cooking']);
+                $ingredients = trim($mySQLConnector->transformString($_POST['ingredients']));
+                $cooking = trim($mySQLConnector->transformString($_POST['cooking']));
 
                 $query = "INSERT INTO " . $table . " (name, img, portions, calories, time, ingredients, cooking, username) VALUES ('$name', '$img', '$portions', $calories, '$time', '$ingredients', 
 					'$cooking', '$username');";
@@ -49,10 +48,6 @@ class Add_Recipe_Model extends Model
                 header("Location: /profile");
                 exit;
             }
-            else
-                echo 'kek';
         }
-        else
-            echo 'puk';
     }
 }

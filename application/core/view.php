@@ -16,7 +16,6 @@ class View {
         внутри которого будет встраиваться вид
         для отображения контента конкретной страницы.
         */
-        echo $_SESSION['uri'];
         include 'application/views/template_view.php';
     }
 

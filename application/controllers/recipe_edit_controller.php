@@ -11,8 +11,8 @@ class Recipe_Edit_Controller extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->model = new Recipe_Edit_Model();
-        $this->view = new View();
     }
 
     public function action_index()
@@ -34,6 +34,4 @@ class Recipe_Edit_Controller extends Controller
             header("Location: " . $_SESSION['uri']);
         }
     }
-
-
 }

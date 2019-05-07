@@ -6,7 +6,8 @@
  * Time: 23:53
  */
 
-class Ingredients_Model extends Model {
+class Ingredients_Model extends Model
+{
 
     function get_data()
     {
@@ -42,5 +43,4 @@ class Ingredients_Model extends Model {
 
         return $data;
     }
-
 }

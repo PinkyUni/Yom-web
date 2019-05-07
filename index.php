@@ -6,7 +6,7 @@
  * Time: 23:26
  */
 
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 //error_reporting(0);
 require_once 'application/core/model.php';
 require_once 'application/core/view.php';

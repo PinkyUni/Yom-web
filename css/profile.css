@@ -280,3 +280,19 @@ li:last-child {
 	background-color: #ffb000;
 	box-shadow: 0 0 2px #585858;
 }
+
+.bottom-galery div:nth-child(1) {
+	background: url(../img/profile1.jpg) no-repeat center center;
+}
+
+.bottom-galery div:nth-child(2) {
+	background: url(../img/profile2.jfif) no-repeat center center;
+}
+
+.bottom-galery div:nth-child(3) {
+	background: url(../img/profile3.jpg) no-repeat center center;
+}
+
+.bottom-galery div:nth-child(4) {
+	background: url(../img/profile4.jpg) no-repeat center center;
+}

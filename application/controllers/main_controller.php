@@ -1,13 +1,16 @@
 <?php
 
-class Main_Controller extends Controller {
+class Main_Controller extends Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
+        parent::__construct();
         $this->model = new Main_Model();
-        $this->view = new View();
     }
 
-    function action_index() {
+    function action_index()
+    {
         $data = $this->model->get_data();
 
         require_once 'application/core/cache.php';

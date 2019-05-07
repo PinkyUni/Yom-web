@@ -9,12 +9,9 @@
 class Recipe_Controller extends Controller
 {
 
-    /**
-     * Recipe_Controller constructor.
-     */
     function __construct() {
+        parent::__construct();
         $this->model = new Recipe_Model();
-        $this->view = new View();
     }
 
     function action_index() {

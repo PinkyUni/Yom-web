@@ -1,7 +1,6 @@
 <head>
     <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" href="../../css/register.css">
     <link rel="stylesheet" href="../../config/css/for_all.css">
     <link rel="stylesheet" href="../../config/css/menu.css">
@@ -16,6 +15,7 @@ include 'header.php';
         <form method="POST" action="/register" enctype="multipart/form-data">
             <h2>Register</h2>
             <input type="text" name="username" placeholder="Username" required>
+            <div style="font-size: 1vw;">* Letters, digits and symbols like '-', '_' and '.' are allowed only.</div>
             <input type="password" name="password" id="password1" placeholder="Password" required>
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>
             <input type="email" name="email" placeholder="E-mail" required>

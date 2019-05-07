@@ -5,15 +5,15 @@ class Cache {
     private $cache_file = '';
     private $cache_time = 60;
 
-    function get_cache_file() {
+    private function get_cache_file() {
         return $this->cache_file;
     }
 
-    function set_cache_file($cache_file) {
+    private function set_cache_file($cache_file) {
         $this->cache_file = $cache_file;
     }
 
-    function read_cache() {
+    public function read_cache() {
         $file = 'main';
         $links = explode('/', $_SERVER['REQUEST_URI']);
         if (!empty($links[1])) {
@@ -30,14 +30,12 @@ class Cache {
         ob_start();
     }
 
-    function write_cache() {
+    public function write_cache() {
         $cache_file = $this->get_cache_file();
         $handle = fopen($cache_file, 'w');
         fwrite($handle, ob_get_contents());
         fclose($handle);
         ob_end_flush();
     }
-
 }
 
-?>

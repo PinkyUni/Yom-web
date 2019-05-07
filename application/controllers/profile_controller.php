@@ -11,8 +11,8 @@ class Profile_Controller extends Controller
 
     function __construct()
     {
+        parent::__construct();
         $this->model = new Profile_Model();
-        $this->view = new View();
     }
 
     function action_index()

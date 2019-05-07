@@ -1,5 +1,4 @@
-body,
-input {
+body {
   font-family: Neucha;
 }
 
@@ -38,6 +37,7 @@ input {
   font-size: 17px;
   line-height: 20px;
   text-decoration: none;
+  font-family: Neucha;
 }
 
 input:hover {

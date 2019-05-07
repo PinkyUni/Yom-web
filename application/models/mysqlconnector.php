@@ -13,8 +13,13 @@ class MySQLConnector
         mysqli_query(self::$connection, "SET NAMES 'utf8'");
     }
 
-    private function __clone () {}
-    private function __wakeup () {}
+    private function __clone()
+    {
+    }
+
+    private function __wakeup()
+    {
+    }
 
     public static function getInstance()
     {
@@ -59,6 +64,11 @@ class MySQLConnector
     public function transformString($string)
     {
         return htmlentities(mysqli_real_escape_string(self::$connection, $string));
+    }
+
+    public function getString($string)
+    {
+        return html_entity_decode($string);
     }
 
     public function getRowsNumber($res)

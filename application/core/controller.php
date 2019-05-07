@@ -12,8 +12,5 @@ class Controller
     }
 
     // действие (action), вызываемое по умолчанию
-    function action_index()
-    {
-
-    }
+    function action_index() {}
 }

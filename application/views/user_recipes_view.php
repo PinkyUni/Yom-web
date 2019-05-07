@@ -1,5 +1,5 @@
 <head>
-    <title>Profile</title>
+    <title>User recipes</title>
     <link rel="stylesheet" type="text/css" href="../../css/user_recipes.css">
     <link rel="stylesheet" href="../../config/css/for_all.css">
     <link rel="stylesheet" href="../../config/css/menu.css">

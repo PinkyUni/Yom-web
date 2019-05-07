@@ -124,7 +124,7 @@ include 'header.php';
                 $card = str_replace('{INGREDIENT_LIST}', $items, $card);
                 $card = str_replace('{HREF}', $_SESSION['session_username'] . '/' . $elem['id'], $card);
 
-                if (strpos($data['fav_recipes'], $elem['id']) === FALSE) {
+                if (strpos($data['fav_recipes'], $elem['id'] . ' ') === FALSE) {
                     $card = str_replace('{STYLE}', 'color: #585858;', $card);
                 } else {
                     $card = str_replace('{STYLE}', 'color: #ffb000;', $card);

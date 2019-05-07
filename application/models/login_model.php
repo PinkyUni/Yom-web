@@ -25,26 +25,23 @@ class login_model extends Model
             header("Location: /profile");
         }
 
-        $message = '';
         if (isset($_POST["login"])) {
 
-            $mysqlconnector = MySQLConnector::getInstance();
             if (!empty($_POST['username']) && !empty($_POST['password'])) {
+                $mysqlconnector = MySQLConnector::getInstance();
 
                 $username = $mysqlconnector->transformString($_POST['username']);
                 $password = $mysqlconnector->transformString($_POST['password']);
-                $res = $mysqlconnector->getQueryResultWithoutTransformation("SELECT * FROM users WHERE name='" . $username . "' AND password='" . $password . "'");
-                $numrows = $mysqlconnector->getRowsNumber($res);
-                return $numrows;
+                $password = hash('sha512', $password);
 
-            } else {
-                $message = "All fields are required!";
+                $res = $mysqlconnector->getSingleValue("SELECT password FROM users WHERE name='" . $username . "';", 'password');
+                $res = $mysqlconnector->getString($res);
+
+                if (strcmp($password, $res) == 0) {
+                    return 1;
+                } else
+                    return 0;
             }
         }
-
-        if (!empty($message)) {
-            return $message;
-        }
     }
-
 }

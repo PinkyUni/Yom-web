@@ -8,9 +8,10 @@
 
 class Register_Controller extends Controller
 {
-    function __construct() {
+    function __construct()
+    {
+        parent::__construct();
         $this->model = new Register_Model();
-        $this->view = new View();
     }
 
     function action_index()
@@ -27,5 +28,4 @@ class Register_Controller extends Controller
         $this->view->generate('register_view.php', $message);
         $cache->write_cache();
     }
-
 }

@@ -6,14 +6,17 @@
  * Time: 22:58
  */
 
-class Login_Controller extends Controller {
+class Login_Controller extends Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
+        parent::__construct();
         $this->model = new Login_Model();
-        $this->view = new View();
     }
 
-    function action_index() {
+    function action_index()
+    {
         session_start();
         $this->login();
         require_once 'application/core/cache.php';
@@ -23,17 +26,19 @@ class Login_Controller extends Controller {
         $cache->write_cache();
     }
 
-    function login() {
+    function login()
+    {
         if ($this->model->has_user()) {
             $_SESSION['session_username'] = $_POST['username'];
             $_SESSION['user_img'] = $this->model->get_user_photo();
-            echo $_SESSION['user_img'];
             array_map('unlink', glob("application/cache/*.html"));
-            header("Location: /profile");
-        } 
+            if ($_SESSION['session_username'] != 'admin')
+                header("Location: /profile");
+        }
     }
 
-    function action_logout() {
+    function action_logout()
+    {
         session_start();
         unset($_SESSION['session_username']);
         unset($_SESSION['user_img']);

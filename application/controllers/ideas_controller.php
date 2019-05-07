@@ -6,14 +6,11 @@
  * Time: 22:52
  */
 
-class Ideas_Controller extends Controller {
+class Ideas_Controller extends Controller
+{
 
-    function __construct() {
-//        $this->model = new Ideas_Model();
-        $this->view = new View();
-    }
-
-    function action_index() {
+    function action_index()
+    {
         session_start();
         require_once 'application/core/cache.php';
         $cache = new Cache();

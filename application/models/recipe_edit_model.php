@@ -91,5 +91,4 @@ class Recipe_Edit_Model extends Model
             $mySQLConnector->executeQuery($query);
         }
     }
-
 }

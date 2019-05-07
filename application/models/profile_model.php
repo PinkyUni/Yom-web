@@ -48,6 +48,7 @@ class Profile_Model extends Model
         $fav_recipes = $mySQLConnector->getSingleValue($query, 'fav_recipes');
         $faves = explode(' ', $fav_recipes);
         $faves = \array_diff($faves, ['']);
+
         $fav_count = 0;
         if (is_array($faves))
             $fav_count = count($faves);
@@ -84,7 +85,18 @@ class Profile_Model extends Model
                 'cooking' => $elem['cooking'],
             );
         }
+        $recipes = $this->customMultiSort($recipes, 'name');
         return $recipes;
+    }
+
+    private function customMultiSort($array, $field)
+    {
+        $sortArr = array();
+        foreach ($array as $key => $val) {
+            $sortArr[$key] = $val[$field];
+        }
+        array_multisort($sortArr, $array);
+        return $array;
     }
 
     public function get_favourite_recipes()
@@ -100,23 +112,22 @@ class Profile_Model extends Model
 
             $recipes = array();
             $ids = explode(' ', $result);
+            $ids = \array_diff($ids, ['']);
             foreach ($ids as $id) {
-                if (!empty($id)) {
-                    $query = "SELECT * FROM recipes WHERE id = $id;";
-                    $elem = $mySQLConnector->getQueryResult($query);
+                $query = "SELECT * FROM recipes WHERE id = $id;";
+                $elem = $mySQLConnector->getQueryResult($query);
 
-                    $elem = $elem[0];
-                    $recipes[] = array(
-                        'id' => $elem['id'],
-                        'name' => $elem['name'],
-                        'img' => $elem['img'],
-                        'portions' => $elem['portions'],
-                        'calories' => $elem['calories'],
-                        'time' => date("h:i", strtotime($elem['time'])),
-                        'ingredients' => $elem['ingredients'],
-                        'cooking' => $elem['cooking'],
-                    );
-                }
+                $elem = $elem[0];
+                $recipes[] = array(
+                    'id' => $elem['id'],
+                    'name' => $elem['name'],
+                    'img' => $elem['img'],
+                    'portions' => $elem['portions'],
+                    'calories' => $elem['calories'],
+                    'time' => date("h:i", strtotime($elem['time'])),
+                    'ingredients' => $elem['ingredients'],
+                    'cooking' => $elem['cooking'],
+                );
             }
             return $recipes;
         }
@@ -150,5 +161,4 @@ class Profile_Model extends Model
             header("location: /login");
         return true;
     }
-
 }

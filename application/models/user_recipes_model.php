@@ -8,20 +8,21 @@
 
 class User_Recipes_Model extends Model
 {
-    public function get_data()
+    public function get_data($condition = '')
     {
         require_once 'mysqlconnector.php';
 
-        $data['recipes'] = $this->get_recipes();
+        $data['recipes'] = $this->get_recipes($condition);
         $data['fav_ids'] = $this->get_favourite_ids();
         return $data;
     }
 
-    private function get_recipes() {
+    private function get_recipes($condition = '')
+    {
         $mySQLConnector = MySQLConnector::getInstance();
 
         $table = 'recipes';
-        $query = "SELECT * FROM $table;";
+        $query = "SELECT * FROM $table $condition;";
         $data = $mySQLConnector->getQueryResult($query);
 
         $recipes = array();
@@ -38,10 +39,22 @@ class User_Recipes_Model extends Model
                 'cooking' => $elem['cooking'],
             );
         }
+        $recipes = $this->customMultiSort($recipes, 'name');
         return $recipes;
     }
 
-    private function get_favourite_ids() {
+    private function customMultiSort($array, $field)
+    {
+        $sortArr = array();
+        foreach ($array as $key => $val) {
+            $sortArr[$key] = $val[$field];
+        }
+        array_multisort($sortArr, $array);
+        return $array;
+    }
+
+    private function get_favourite_ids()
+    {
 
         if (isset($_SESSION['session_username'])) {
             $mySQLConnector = MySQLConnector::getInstance();
