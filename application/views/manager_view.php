@@ -72,7 +72,10 @@ include 'header.php';
                 $votings = '';
                 foreach ($data as $voting) {
                     $item = "<article>
-                                <h2>{NAME}</h2>
+                                <div class='row'>
+                                    <h3>{NAME}</h3>
+                                    <a href='/manager/delete/{ID}'><i class=\"fas fa-times\"></i></a>
+                                </div>                                
                                 <div class=\"options\">
                                     <div class=\"option\">
                                         <div class=\"count\">{C1}</div>
@@ -94,6 +97,7 @@ include 'header.php';
                             </article>";
 
                     $item = str_replace('{NAME}', $voting['name'], $item);
+                    $item = str_replace('{ID}', $voting['id'], $item);
 
                     $options = explode("\n", $voting['info']);
                     for ($i = 1; $i <= 4; $i++) {

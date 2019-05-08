@@ -50,6 +50,15 @@ main {
     justify-content: space-between;
 }
 
+h3 {
+    padding-left: 3vw;
+}
+
+.fa-times {
+    font-size: 1.3em;
+    align-self: center;
+}
+
 .fa-plus {
     font-size: 1.5em;
     align-self: center;

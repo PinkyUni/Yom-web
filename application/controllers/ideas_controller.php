@@ -20,10 +20,10 @@ class Ideas_Controller extends Controller
         session_start();
         require_once 'application/core/cache.php';
         $data = $this->model->get_votings();
-//        $cache = new Cache();
-//        $cache->read_cache();
+        $cache = new Cache();
+        $cache->read_cache();
         $this->view->generate('ideas_view.php', $data);
-//        $cache->write_cache();
+        $cache->write_cache();
     }
 
     public function action_add()

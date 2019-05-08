@@ -50,4 +50,13 @@ class Manager_Controller extends Controller
         header("Location: /manager/comments");
     }
 
+    public function action_delete() {
+        session_start();
+        if (isset($_SESSION['session_username'])) {
+            $vars = explode('/',$_SERVER['REQUEST_URI']);
+           $this->model->delete_voting($vars[3]);
+           header("Location: /manager");
+        }
+    }
+
 }

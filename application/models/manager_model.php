@@ -32,6 +32,14 @@ class Manager_Model extends Model
         return $votes;
     }
 
+    public function delete_voting($id) {
+        require_once "mysqlconnector.php";
+        $mysqlconnector = MySQLConnector::getInstance();
+
+        $query = "DELETE FROM votes WHERE id = $id;";
+        $mysqlconnector->executeQuery($query);
+    }
+
     public function get_comments()
     {
         require_once 'mysqlconnector.php';
