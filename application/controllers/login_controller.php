@@ -35,7 +35,7 @@ class Login_Controller extends Controller
             if ($_SESSION['session_username'] != 'admin')
                 header("Location: /profile");
             else
-                header("Location: /comments_manager");
+                header("Location: /manager/comments");
         }
     }
 

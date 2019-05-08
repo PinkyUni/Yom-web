@@ -17,7 +17,7 @@
         <li><a href="/ideas">Ideas</a></li>
         <a href="<?php
         if (isset($_SESSION['session_username']) && $_SESSION['session_username'] == 'admin')
-            echo "/comments_manager";
+            echo "/manager/comments";
         else
             echo "/profile";
         ?>" title="Your profile"><img class="user-icon" alt="Your profile"

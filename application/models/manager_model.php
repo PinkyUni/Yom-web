@@ -6,9 +6,34 @@
  * Time: 22:57
  */
 
-class Comments_Manager_Model extends Model
+class Manager_Model extends Model
 {
-    public function get_data() {
+    public function get_votes()
+    {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT * FROM votes";
+        $data = $mySQLConnector->getQueryResult($query);
+
+        $votes = array();
+        foreach ($data as $elem) {
+            $votes[] = array(
+                'id' => $elem['id'],
+                'name' => $elem['name'],
+                'info' => $elem['info'],
+                'var1' => $elem['var1'],
+                'var2' => $elem['var2'],
+                'var3' => $elem['var3'],
+                'var4' => $elem['var4'],
+            );
+        }
+        return $votes;
+    }
+
+    public function get_comments()
+    {
         require_once 'mysqlconnector.php';
 
         $mySQLConnector = MySQLConnector::getInstance();
@@ -26,7 +51,8 @@ class Comments_Manager_Model extends Model
         return $comments;
     }
 
-    public function accept_data() {
+    public function accept_data()
+    {
         require_once 'mysqlconnector.php';
 
         $mySQLConnector = MySQLConnector::getInstance();
@@ -34,12 +60,12 @@ class Comments_Manager_Model extends Model
         foreach ($_POST['comments'] as $comment) {
             $query = "UPDATE comments SET accepted = 1 WHERE id = $comment;";
             $mySQLConnector->executeQuery($query);
-
             $this->send_email($comment);
         }
     }
 
-    public function delete_data() {
+    public function delete_data()
+    {
         require_once 'mysqlconnector.php';
 
         $mySQLConnector = MySQLConnector::getInstance();
@@ -63,7 +89,7 @@ class Comments_Manager_Model extends Model
         $rec_id = $comment_info[0]['recipe_id'];
 
         $query = "SELECT username FROM recipes WHERE id = $rec_id;";
-        $username = $mySQLConnector->getSingleValue($query,'username');
+        $username = $mySQLConnector->getSingleValue($query, 'username');
 
         $query = "SELECT * FROM users WHERE name = '$username';";
         $user_info = $mySQLConnector->getQueryResult($query);
