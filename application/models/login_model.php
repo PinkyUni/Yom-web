@@ -21,10 +21,6 @@ class login_model extends Model
     {
         require_once 'mysqlconnector.php';
 
-        if (isset($_SESSION["session_username"])) {
-            header("Location: /profile");
-        }
-
         if (isset($_POST["login"])) {
 
             if (!empty($_POST['username']) && !empty($_POST['password'])) {

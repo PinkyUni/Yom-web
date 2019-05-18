@@ -63,10 +63,10 @@ class Register_Model extends Model
                 $sql = "INSERT INTO users (name, email, password, img, subscribed, fav_recipes) VALUES ('$username','$email', '$password', '$img', '$subscribed', '');";
                 echo $sql;
                 $result = $mysqlconnector->executeQuery($sql);
-                var_dump($result);
-                if ($result) {
+                if ($result && strcmp($_SESSION['session_username'], 'admin') != 0) {
                     header("Location: /profile");
-                }
+                } else
+                    header("Location: " . $_SESSION['uri']);
             } else {
                 $message = 'User with such name already exists!';
                 return $message;

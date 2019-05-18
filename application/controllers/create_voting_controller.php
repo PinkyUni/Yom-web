@@ -26,6 +26,7 @@ class Create_Voting_Controller extends Controller
         if (isset($_SESSION['session_username']) && isset($_POST['add'])) {
             $this->model->add_voting();
         }
-        header("Location: /manager");
+        echo $_SESSION['uri'];
+        header("Location: " . $_SESSION['uri']);
     }
 }

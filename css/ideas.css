@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    font-family: Neucha;
 }
 
 header {
@@ -127,6 +128,7 @@ input:hover {
 label {
     padding-left: 12px;
     word-break: break-word;
+    font-family: Neucha;
 }
 
 input[type="checkbox"] {

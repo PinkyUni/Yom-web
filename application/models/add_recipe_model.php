@@ -45,8 +45,6 @@ class Add_Recipe_Model extends Model
                 $query = "INSERT INTO " . $table . " (name, img, portions, calories, time, ingredients, cooking, username) VALUES ('$name', '$img', '$portions', $calories, '$time', '$ingredients', 
 					'$cooking', '$username');";
                 $mySQLConnector->executeQuery($query);
-                header("Location: /profile");
-                exit;
             }
         }
     }

@@ -8,13 +8,45 @@
 
 class Manager_Model extends Model
 {
+    public function get_users()
+    {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT * FROM users WHERE NOT name = 'admin';";
+        $data = $mySQLConnector->getQueryResult($query);
+
+        $users = array();
+        foreach ($data as $elem) {
+            $query = "SELECT * FROM recipes WHERE username = '" . $elem['name'] . "';";
+            $recipes = $mySQLConnector->getQueryResultWithoutTransformation($query);
+            $count = $mySQLConnector->getRowsNumber($recipes);
+
+            $faves = explode(' ', $elem['fav_recipes']);
+            $faves = \array_diff($faves, ['']);
+            $fav_count = 0;
+            if (is_array($faves))
+                $fav_count = count($faves);
+
+            $users[] = array(
+                'id' => $elem['id'],
+                'name' => $elem['name'],
+                'img' => $elem['img'],
+                'fav_recipes' => $fav_count,
+                'recipes' => $count,
+            );
+        }
+        return $users;
+    }
+
     public function get_votes()
     {
         require_once 'mysqlconnector.php';
 
         $mySQLConnector = MySQLConnector::getInstance();
 
-        $query = "SELECT * FROM votes";
+        $query = "SELECT * FROM votes;";
         $data = $mySQLConnector->getQueryResult($query);
 
         $votes = array();
@@ -32,11 +64,47 @@ class Manager_Model extends Model
         return $votes;
     }
 
-    public function delete_voting($id) {
+    public function get_recipes()
+    {
+        require_once 'mysqlconnector.php';
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT * FROM recipes;";
+        $data = $mySQLConnector->getQueryResult($query);
+
+        $recipes = array();
+        foreach ($data as $elem) {
+            $recipes[] = array(
+                'id' => $elem['id'],
+                'name' => $elem['name'],
+                'img' => $elem['img'],
+                'portions' => $elem['portions'],
+                'calories' => $elem['calories'],
+                'time' => date("h:i", strtotime($elem['time'])),
+                'ingredients' => $elem['ingredients'],
+                'username' => $elem['username'],
+            );
+        }
+        $recipes = $this->customMultiSort($recipes, 'name');
+        return $recipes;
+    }
+
+    private function customMultiSort($array, $field)
+    {
+        $sortArr = array();
+        foreach ($array as $key => $val) {
+            $sortArr[$key] = $val[$field];
+        }
+        array_multisort($sortArr, $array);
+        return $array;
+    }
+
+    public function delete_by_id($id, $table)
+    {
         require_once "mysqlconnector.php";
         $mysqlconnector = MySQLConnector::getInstance();
 
-        $query = "DELETE FROM votes WHERE id = $id;";
+        $query = "DELETE FROM $table WHERE id = $id;";
         $mysqlconnector->executeQuery($query);
     }
 
@@ -95,9 +163,7 @@ class Manager_Model extends Model
         $comment_info = $mySQLConnector->getQueryResult($query);
 
         $rec_id = $comment_info[0]['recipe_id'];
-
-        $query = "SELECT username FROM recipes WHERE id = $rec_id;";
-        $username = $mySQLConnector->getSingleValue($query, 'username');
+        $username = $this->get_user_id_by_recipe_id($rec_id);
 
         $query = "SELECT * FROM users WHERE name = '$username';";
         $user_info = $mySQLConnector->getQueryResult($query);
@@ -123,7 +189,53 @@ class Manager_Model extends Model
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
 
-            $res = mail($email, $subject, $message, $headers);
+            mail($email, $subject, $message, $headers);
         }
+    }
+
+    public function user_exists($id)
+    {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT username FROM recipes WHERE id = $id;";
+        $user = $mySQLConnector->getQueryResultWithoutTransformation($query);
+        return $mySQLConnector->getRowsNumber($user);
+    }
+
+    public function get_user_id_by_recipe_id($recipe_id)
+    {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT username FROM recipes WHERE id = $recipe_id;";
+        $name = $mySQLConnector->getSingleValue($query, 'username');
+
+        $query = "SELECT id FROM users WHERE name = '$name';";
+        $id = $mySQLConnector->getSingleValue($query, 'id');
+
+        echo $id;
+        return $id;
+    }
+
+    public function delete_notice($id, $message)
+    {
+        require_once 'mysqlconnector.php';
+
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT email FROM users WHERE id = $id;";
+        $email = $mySQLConnector->getSingleValue($query, 'email');
+
+        $subject = "Important!";
+
+        $headers = "From: Yom.com <yom.com.recipes@gmail.com>\r\n";
+        $headers .= "Reply-To: keklolpukger@gmail.com\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
+
+        mail($email, $subject, $message, $headers);
     }
 }

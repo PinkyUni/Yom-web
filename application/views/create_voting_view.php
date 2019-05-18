@@ -22,6 +22,7 @@ include 'header.php';
             <input type="text" name="var[]" placeholder="3">
             <input type="text" name="var[]" placeholder="4">
             <input type="submit" name="add" id="accept" value="Create voting">
+            <input type="submit" name="cancel" id="cancel" value="Cancel">
         </form>
     </div>
 </main>

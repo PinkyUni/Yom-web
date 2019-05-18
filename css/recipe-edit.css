@@ -223,7 +223,7 @@ input[name="save_recipe"]:hover {
 
 input[name="delete_recipe"] {
     background-color: orangered;
-    margin-bottom: 20px 0;
+    margin-bottom: 20px;
 }
 
 input[name="delete_recipe"]:hover {

@@ -77,24 +77,25 @@ class Recipe_Model extends Model
         }
     }
 
-    private function mail_admin($username = 'admin') {
+    private function mail_admin($username = 'admin')
+    {
         require_once 'mysqlconnector.php';
 
         $mySQLConnector = MySQLConnector::getInstance();
 
-            $query = "SELECT email FROM users WHERE name = '$username';";
-            $email = $mySQLConnector->getSingleValue($query, 'email');
+        $query = "SELECT email FROM users WHERE name = '$username';";
+        $email = $mySQLConnector->getSingleValue($query, 'email');
 
-            $subject = "New comment!";
+        $subject = "New comment!";
 
-            $message = "<p>There's a new comment! Check it <a href='yom.com/comments_manager' style='color: gold;'>here</a></p>";
+        $message = "<p>There's a new comment! Check it <a href='yom.com/comments_manager' style='color: gold;'>here</a></p>";
 
-            $headers = "From: Yom.com <yom.com.recipes@gmail.com>\r\n";
-            $headers .= "Reply-To: keklolpukger@gmail.com\r\n";
-            $headers .= "MIME-Version: 1.0\r\n";
-            $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
+        $headers = "From: Yom.com <yom.com.recipes@gmail.com>\r\n";
+        $headers .= "Reply-To: keklolpukger@gmail.com\r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=windows-1251 \r\n";
 
-            mail($email, $subject, $message, $headers);
+        mail($email, $subject, $message, $headers);
     }
 
     public function get_comments($id)

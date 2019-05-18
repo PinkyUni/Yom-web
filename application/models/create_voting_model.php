@@ -19,8 +19,5 @@ class Create_Voting_Model extends Model
         $name = $_POST['name'];
         $query = "INSERT INTO votes (name, info) VALUES ('$name', '$info');";
         $mysqlconnector->executeQuery($query);
-
     }
-
-
 }

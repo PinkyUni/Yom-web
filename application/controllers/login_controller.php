@@ -18,7 +18,7 @@ class Login_Controller extends Controller
     function action_index()
     {
         session_start();
-        $this->login();
+        $this->check_session();
         require_once 'application/core/cache.php';
         $cache = new Cache();
         $cache->read_cache();
@@ -32,11 +32,19 @@ class Login_Controller extends Controller
             $_SESSION['session_username'] = $_POST['username'];
             $_SESSION['user_img'] = $this->model->get_user_photo();
             array_map('unlink', glob("application/cache/*.html"));
-            if ($_SESSION['session_username'] != 'admin')
-                header("Location: /profile");
-            else
-                header("Location: /manager/comments");
+            $this->check_session();
         }
+    }
+
+    private function check_session()
+    {
+        if (isset($_SESSION['session_username']))
+            if (strcasecmp($_SESSION['session_username'], 'admin') == 0)
+                header("Location: /manager/comments");
+            else
+                header("Location: /profile");
+        else
+            $this->login();
     }
 
     function action_logout()

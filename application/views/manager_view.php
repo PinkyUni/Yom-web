@@ -18,22 +18,40 @@ include 'header.php';
         <div class="btn_out"><i class="fas fa-sign-out-alt"></i>Log out</div>
     </a>
     <div class="tabs"><?php
-        $tabs = '<span class="tab" style="{C}"><a href="/manager/comments">Comments</a></span>
+        $tabs = '<span class="tab" style="{U}"><a href="/manager/users">Users</a></span>
+                 <span class="tab" style="{R}"><a href="/manager/recipes">Recipes</a></span>
+                 <span class="tab" style="{C}"><a href="/manager/comments">Comments</a></span>
                  <span class="tab" style="{V}"><a href="/manager/voting">Voting</a></span></div>
             <div class="comments">
             <div class="row"><h2>{TITLE}</h2>{PLUS}</div>  ';
 
         $vars = explode('/', $_SERVER['REQUEST_URI']);
 
-        if (!empty($vars[2]) && (strcmp($vars[2], 'voting') == 0)) {
-            $replace = '{V}';
-            $title = "Votings";
-            $plus = '<a href="/create_voting"><i class="fas fa-plus"></i></a>';
-        } else {
-            $replace = '{C}';
-            $title = "New comments";
-            $plus = '';
+        if (empty($vars[2]))
+            $vars[2] = 'comments';
+        switch ($vars[2]) {
+            case 'voting':
+                $replace = '{V}';
+                $title = "Votings";
+                $plus = '<a href="/create_voting"><i class="fas fa-plus"></i></a>';
+                break;
+            case 'recipes':
+                $replace = '{R}';
+                $title = "Recipes";
+                $plus = '<a href="/add_recipe"><i class="fas fa-plus"></i></a>';
+                break;
+            case 'comments':
+                $replace = '{C}';
+                $title = "New comments";
+                $plus = '';
+                break;
+            case 'users':
+                $replace = '{U}';
+                $title = "Users";
+                $plus = '<a href="/register"><i class="fas fa-plus"></i></a>';
+                break;
         }
+
         $tabs = str_replace('{TITLE}', $title, $tabs);
         $tabs = str_replace($replace, "background-color: white; box-shadow: 0 -1px 2px #585858;", $tabs);
         $tabs = str_replace('{PLUS}', $plus, $tabs);
@@ -44,7 +62,7 @@ include 'header.php';
             <?php
             $vars = explode('/', $_SERVER['REQUEST_URI']);
 
-            if (!empty($vars[2]) && (strcmp($vars[2], 'voting') != 0)) {
+            if (!empty($vars[2]) && (strcmp($vars[2], 'comments') == 0)) {
                 $comments = '';
                 foreach ($data as $comment) {
                     $item = '<div class="comment">
@@ -68,13 +86,13 @@ include 'header.php';
                       <input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Delete selected comments\">";
                 } else
                     echo "<p style=\"text-align: center\">There's no new comments</p>";
-            } else {
+            } elseif (!empty($vars[2]) && (strcmp($vars[2], 'voting') == 0)) {
                 $votings = '';
                 foreach ($data as $voting) {
                     $item = "<article>
                                 <div class='row'>
                                     <h3>{NAME}</h3>
-                                    <a href='/manager/delete/{ID}'><i class=\"fas fa-times\"></i></a>
+                                    <a href='/manager/delete/voting/{ID}'><i class=\"fas fa-times\"></i></a>
                                 </div>                                
                                 <div class=\"options\">
                                     <div class=\"option\">
@@ -108,10 +126,113 @@ include 'header.php';
                 }
                 if (!empty($votings)) {
                     print $votings;
-//                    echo "<input type=\"submit\" name=\"accept\" id=\"accept\" value=\"Accept selected comments\">
-//                      <input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Delete selected comments\">";
                 } else
                     echo "<p style=\"text-align: center\">There's no votings now</p>";
+            } elseif (!empty($vars[2]) && (strcmp($vars[2], 'users') == 0)) {
+                $users = '';
+                foreach ($data as $user) {
+                    $item = "<article>
+                                <div class='row'>
+                                    <div class='user-photo'>
+                                        <img class='photo' src={IMAGE} alt={ID}>
+                                    </div>
+                                    <div class='fill' style='padding: 1vw;'>
+                                        <div class='row'>
+                                            <h3>{NAME}</h3>
+                                            <a href='/manager/delete/users/{ID}'><i class=\"fas fa-times\"></i></a>
+                                        </div>
+                                        <div class='fill'>
+                                            <div>Recipes: {REC}</div>
+                                            <div>Favourites: {FAV}</div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </article>";
+
+                    $item = str_replace('{IMAGE}', '../img/users/' . $user['name'] . '/' . $user['img'], $item);
+                    $item = str_replace('{NAME}', $user['name'], $item);
+                    $item = str_replace('{ID}', $user['id'], $item);
+                    $item = str_replace('{REC}', $user['recipes'], $item);
+                    $item = str_replace('{FAV}', $user['fav_recipes'], $item);
+
+                    $users .= $item;
+                }
+                if (!empty($users)) {
+                    print $users;
+                } else
+                    echo "<p style=\"text-align: center\">There's no registered users</p>";
+            }
+            elseif (!empty($vars[2]) && (strcmp($vars[2], 'recipes') == 0)) {
+                if (count($data)) {
+                    $page_data = '';
+                    foreach ($data as $elem) {
+                        $card = '<div class="recipe">
+                            <div class="img-el" {IMAGE}>
+                            </div>
+                            <div class="info-el">
+                                <div class="row">
+                                    <div class="recipe-name">{NAME}</div>
+                                    <a href=\'/manager/delete/recipes/{ID}\'><i class="fas fa-times"></i></a>
+                                </div>
+                                <div class="main-info-el">
+                                    <div class="ingredients">
+                                        <span class="ing-title"><u>Ingredients:</u></span>
+                                        <ul class="list">
+                                            {INGREDIENT_LIST}
+                                        </ul>
+                                    </div>
+                                    <div class="cooking-info">
+                                        <div class="cooking-el">
+                                            <span>{CALORIES}</span>
+                                            <span>Calories</span>
+                                        </div>
+                                        <span class="del"></span>
+                                        <div class="cooking-el">
+                                            <span>{TIME}</span>
+                                            <span>Time</span>
+                                        </div>
+                                        <span class="del"></span>
+                                        <div class="cooking-el">
+                                            <span>{PORTIONS}</span>
+                                            <span>Portions</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn">
+                                    <div class="btn-name"><a href="/recipe/{HREF}">See more</a></div>
+                                </div>
+                            </div>
+                        </div>';
+
+                        $items = "";
+                        $ingredients_list = explode("\n", $elem['ingredients']);
+                        foreach ($ingredients_list as $item) {
+                            $item_html = '<li>{INGREDIENT}</li>';
+                            $item_html = str_replace("{INGREDIENT}", $item, $item_html);
+                            $items .= $item_html;
+                        }
+
+                        $card = str_replace('{ID}', $elem['id'], $card);
+                        $card = str_replace('{NAME}', $elem['name'], $card);
+                        $img_path = '../../img/users/';
+                        if (strcmp($elem["img"], 'empty.jpg') != 0)
+                            $img_path .= $elem['username'] . '/';
+                        $style = 'style="background: url(' . $img_path . $elem["img"] . '); 
+                             background-size: cover;
+	                         background-repeat: no-repeat;"';
+                        $card = str_replace('{IMAGE}', $style, $card);
+                        $card = str_replace('{PORTIONS}', $elem['portions'], $card);
+                        $card = str_replace('{CALORIES}', $elem['calories'], $card);
+                        $card = str_replace('{TIME}', $elem['time'], $card);
+                        $card = str_replace('{INGREDIENT_LIST}', $items, $card);
+                        $card = str_replace('{HREF}', $_SESSION['session_username'] . '/' . $elem['id'], $card);
+
+                        $page_data .= $card;
+                    }
+                    print $page_data;
+                } else {
+                    echo "<p style=\"text-align: center\">There's no recipes</p>";
+                }
             }
             ?>
         </form>

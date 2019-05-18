@@ -17,15 +17,12 @@ class Register_Controller extends Controller
     function action_index()
     {
         session_start();
-        if (isset($_SESSION['session_username']))
+        if (isset($_SESSION['session_username']) && strcmp($_SESSION['session_username'], 'admin') != 0)
             header("Location: /profile");
         $message = '';
         if (isset($_POST['register']))
             $message = $this->model->add_user();
         require_once 'application/core/cache.php';
-        $cache = new Cache();
-        $cache->read_cache();
         $this->view->generate('register_view.php', $message);
-        $cache->write_cache();
     }
 }
