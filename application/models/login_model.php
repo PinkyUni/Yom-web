@@ -17,6 +17,14 @@ class login_model extends Model
         return $res;
     }
 
+    public function get_admin_level($name) {
+        require_once 'mysqlconnector.php';
+
+        $mysqlconnector = MySQLConnector::getInstance();
+        $res = $mysqlconnector->getSingleValue("SELECT admin_level FROM users WHERE name='$name';", 'admin_level');
+        return $res;
+    }
+
     public function has_user()
     {
         require_once 'mysqlconnector.php';

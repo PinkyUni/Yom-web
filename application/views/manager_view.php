@@ -21,9 +21,10 @@ include 'header.php';
         $tabs = '<span class="tab" style="{U}"><a href="/manager/users">Users</a></span>
                  <span class="tab" style="{R}"><a href="/manager/recipes">Recipes</a></span>
                  <span class="tab" style="{C}"><a href="/manager/comments">Comments</a></span>
-                 <span class="tab" style="{V}"><a href="/manager/voting">Voting</a></span></div>
-            <div class="comments">
-            <div class="row"><h2>{TITLE}</h2>{PLUS}</div>  ';
+                 <span class="tab" style="{V}"><a href="/manager/voting">Voting</a></span>';
+        if ($_SESSION['admin_level'] == 10)
+            $tabs .= '<span class="tab" style="{A}"><a href="/manager/admins">Admins</a></span></div>';
+        $tabs .= '</div><div class="comments"><div class="row"><h2>{TITLE}</h2>{PLUS}</div>';
 
         $vars = explode('/', $_SERVER['REQUEST_URI']);
 
@@ -50,6 +51,11 @@ include 'header.php';
                 $title = "Users";
                 $plus = '<a href="/register"><i class="fas fa-plus"></i></a>';
                 break;
+            case 'admins':
+                $replace = '{A}';
+                $title = "Admins";
+                $plus = '<a href="/register"><i class="fas fa-plus"></i></a>';
+                break;
         }
 
         $tabs = str_replace('{TITLE}', $title, $tabs);
@@ -62,7 +68,38 @@ include 'header.php';
             <?php
             $vars = explode('/', $_SERVER['REQUEST_URI']);
 
-            if (!empty($vars[2]) && (strcmp($vars[2], 'comments') == 0)) {
+            if (!empty($vars[2]) && (strcmp($vars[2], 'admins') == 0)) {
+                $admins = '';
+                foreach ($data as $admin) {
+                    $item = "<article>
+                                <div class='row'>
+                                    <div class='user-photo'>
+                                        <img class='photo' src={IMAGE} alt={ID}>
+                                    </div>
+                                    <div class='fill' style='padding: 1vw;'>
+                                        <div class='row'>
+                                            <h3>{NAME}</h3>
+                                            <a href='/manager/delete/users/{ID}'><i class=\"fas fa-times\"></i></a>
+                                        </div>
+                                        <div class='fill'>
+                                            <div>Admin level: {LVL}</div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </article>";
+
+                    $item = str_replace('{IMAGE}', '../img/users/' . $admin['name'] . '/' . $admin['img'], $item);
+                    $item = str_replace('{NAME}', $admin['name'], $item);
+                    $item = str_replace('{ID}', $admin['id'], $item);
+                    $item = str_replace('{LVL}', $admin['admin_level'], $item);
+
+                    $admins .= $item;
+                }
+                if (!empty($admins)) {
+                    print $admins;
+                } else
+                    echo "<p style=\"text-align: center\">There's no other admins</p>";
+            } elseif (!empty($vars[2]) && (strcmp($vars[2], 'comments') == 0)) {
                 $comments = '';
                 foreach ($data as $comment) {
                     $item = '<div class="comment">
@@ -161,8 +198,7 @@ include 'header.php';
                     print $users;
                 } else
                     echo "<p style=\"text-align: center\">There's no registered users</p>";
-            }
-            elseif (!empty($vars[2]) && (strcmp($vars[2], 'recipes') == 0)) {
+            } elseif (!empty($vars[2]) && (strcmp($vars[2], 'recipes') == 0)) {
                 if (count($data)) {
                     $page_data = '';
                     foreach ($data as $elem) {

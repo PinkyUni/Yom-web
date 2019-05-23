@@ -14,7 +14,7 @@ class Manager_Model extends Model
 
         $mySQLConnector = MySQLConnector::getInstance();
 
-        $query = "SELECT * FROM users WHERE NOT name = 'admin';";
+        $query = "SELECT * FROM users WHERE admin_level = 0;";
         $data = $mySQLConnector->getQueryResult($query);
 
         $users = array();
@@ -38,6 +38,26 @@ class Manager_Model extends Model
             );
         }
         return $users;
+    }
+
+    public function get_admins()
+    {
+        require_once 'mysqlconnector.php';
+        $mySQLConnector = MySQLConnector::getInstance();
+
+        $query = "SELECT * FROM users WHERE admin_level > 0;";
+        $data = $mySQLConnector->getQueryResult($query);
+
+        $admins = array();
+        foreach ($data as $elem) {
+            $admins[] = array(
+                'id' => $elem['id'],
+                'name' => $elem['name'],
+                'img' => $elem['img'],
+                'admin_level' => $elem['admin_level'],
+            );
+        }
+        return $admins;
     }
 
     public function get_votes()
@@ -97,6 +117,23 @@ class Manager_Model extends Model
         }
         array_multisort($sortArr, $array);
         return $array;
+    }
+
+    public function has_user()
+    {
+        require_once 'mysqlconnector.php';
+        $mysqlconnector = MySQLConnector::getInstance();
+        $res = $mysqlconnector->getQueryResultWithoutTransformation("SELECT * FROM users WHERE name='" . $_SESSION['session_username'] . "';");
+        return $mysqlconnector->getRowsNumber($res);
+    }
+
+    public function get_name_by_id($id)
+    {
+        require_once "mysqlconnector.php";
+        $mysqlconnector = MySQLConnector::getInstance();
+
+        $query = "SELECT name FROM users WHERE id = $id;";
+        return $mysqlconnector->getSingleValue($query, 'name');
     }
 
     public function delete_by_id($id, $table)

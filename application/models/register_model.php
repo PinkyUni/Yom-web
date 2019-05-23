@@ -33,6 +33,12 @@ class Register_Model extends Model
                 } else {
                     $subscribed = "no";
                 }
+                if (isset($_POST['admin_level']) && !empty($_POST['admin_level'])) {
+                    $admin_level = $_POST['admin_level'];
+                    $subscribed = "yes";
+                }
+                else
+                    $admin_level = 0;
 
                 $img = "empty.jpg";
 
@@ -60,13 +66,14 @@ class Register_Model extends Model
                     return $message;
                 }
 
-                $sql = "INSERT INTO users (name, email, password, img, subscribed, fav_recipes) VALUES ('$username','$email', '$password', '$img', '$subscribed', '');";
-                echo $sql;
+                $sql = "INSERT INTO users (name, email, password, img, subscribed, fav_recipes, admin_level) VALUES ('$username','$email', '$password', '$img', '$subscribed', '', $admin_level );";
                 $result = $mysqlconnector->executeQuery($sql);
                 if ($result && strcmp($_SESSION['session_username'], 'admin') != 0) {
                     header("Location: /profile");
-                } else
+                } elseif (isset($_SESSION['uri']))
                     header("Location: " . $_SESSION['uri']);
+                else
+                    header("Location: /error");
             } else {
                 $message = 'User with such name already exists!';
                 return $message;

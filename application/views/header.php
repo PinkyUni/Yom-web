@@ -16,7 +16,7 @@
         <li><a href="/ingredients">Ingredients</a></li>
         <li><a href="/ideas">Ideas</a></li>
         <a href="<?php
-        if (isset($_SESSION['session_username']) && $_SESSION['session_username'] == 'admin')
+        if (isset($_SESSION['session_username']) && isset($_SESSION['admin_level']) && $_SESSION['admin_level'] > 0)
             echo "/manager/comments";
         else
             echo "/profile";

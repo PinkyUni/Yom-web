@@ -30,6 +30,7 @@ class Login_Controller extends Controller
     {
         if ($this->model->has_user()) {
             $_SESSION['session_username'] = $_POST['username'];
+            $_SESSION['admin_level'] = $this->model->get_admin_level($_POST['username']);
             $_SESSION['user_img'] = $this->model->get_user_photo();
             $this->check_session();
         }
@@ -37,12 +38,12 @@ class Login_Controller extends Controller
 
     private function check_session()
     {
-        if (isset($_SESSION['session_username']))
-            if (strcasecmp($_SESSION['session_username'], 'admin') == 0)
+        if (isset($_SESSION['session_username'])) {
+            if ($_SESSION['admin_level'] > 0)
                 header("Location: /manager/comments");
             else
                 header("Location: /profile");
-        else
+        } else
             $this->login();
     }
 
@@ -51,6 +52,7 @@ class Login_Controller extends Controller
         session_start();
         unset($_SESSION['session_username']);
         unset($_SESSION['user_img']);
+        unset($_SESSION['admin_level']);
         session_destroy();
         header("location: /login");
     }

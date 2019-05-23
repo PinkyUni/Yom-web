@@ -19,10 +19,14 @@ include 'header.php';
             <input type="password" name="password" id="password1" placeholder="Password" required>
             <input type="password" name="confirm_password" id="password2" placeholder="Confirm password" required>
             <input type="email" name="email" placeholder="E-mail" required>
-            <div>
-                <input id="checkbox" type="checkbox" name="checkbox">
-                <label for="checkbox">Subscribe to our newsletter</label>
-            </div>
+            <?php if (isset($_SESSION['session_username']) && isset($_SESSION['admin_level']) && $_SESSION['admin_level'] = 10) {
+                echo'<input type="number" name="admin_level" placeholder="Admin_level" required>';
+            } else {
+                echo '<div>
+                        <input id="checkbox" type="checkbox" name="checkbox">
+                        <label for="checkbox">Subscribe to our newsletter</label>
+                    </div>';
+            } ?>
             <section class="load-photo">
                 <input type="file" name="inputfile" id="file">
                 <label for="file" class="load-label">Choose a photo</label>
