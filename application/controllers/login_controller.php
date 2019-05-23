@@ -31,7 +31,6 @@ class Login_Controller extends Controller
         if ($this->model->has_user()) {
             $_SESSION['session_username'] = $_POST['username'];
             $_SESSION['user_img'] = $this->model->get_user_photo();
-            array_map('unlink', glob("application/cache/*.html"));
             $this->check_session();
         }
     }
@@ -53,7 +52,6 @@ class Login_Controller extends Controller
         unset($_SESSION['session_username']);
         unset($_SESSION['user_img']);
         session_destroy();
-        array_map('unlink', glob("application/cache/*.html"));
         header("location: /login");
     }
 

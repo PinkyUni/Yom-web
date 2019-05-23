@@ -13,7 +13,7 @@ include 'header.php';
 ?>
 
 <main><?php
-        if (isset($_SESSION['session_username']) && strcmp($data['recipe']['username'], $_SESSION['session_username']) == 0) {
+        if (isset($_SESSION['session_username']) && (strcmp($data['recipe']['username'], $_SESSION['session_username']) == 0)||strcmp($_SESSION['session_username'], 'admin') == 0) {
             $el = '<a href="{URI}"><div class="btn_edit"><i class="far fa-edit"></i>Edit</div></a>';
             $uri = $_SERVER['REQUEST_URI'];
             $uri = str_replace('recipe', 'recipe_edit', $uri);

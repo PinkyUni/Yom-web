@@ -3,24 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5f683e02-b260-41c6-9805-f609c0db80b4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/add_recipe_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/add_recipe_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/create_voting_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/create_voting_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/error.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/cache/recipes.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/login_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/login_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/manager_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/manager_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/register_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/register_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/core/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/add_recipe_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/add_recipe_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/create_voting_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/create_voting_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/login_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/login_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/manager_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/manager_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/recipe_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/recipe_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/register_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/register_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/create_voting_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/create_voting_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/manager_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/manager_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/ideas.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/ideas.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/manager.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/manager.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/recipe-edit.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/recipe-edit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/main_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/main_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/recipe_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/recipe_view.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,56 +20,64 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/manager_view.php">
+        <entry file="file://$PROJECT_DIR$/application/controllers/user_recipes_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-              <folding>
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#article#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/register_controller.php">
+        <entry file="file://$PROJECT_DIR$/application/core/cache.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+            <state relative-caret-position="544">
+              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/main_controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="482">
+              <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/profile_controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/recipes_controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/models/register_model.php">
+        <entry file="file://$PROJECT_DIR$/application/controllers/recipe_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="68" column="60" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/add_recipe_controller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-              <folding>
-                <element signature="e#6#85#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/profile.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="282" selection-start-line="133" selection-end-line="282" />
+            <state relative-caret-position="272">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -88,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/manager.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="344" column="2" selection-start-line="344" selection-start-column="2" selection-end-line="344" selection-end-column="2" />
+            <state relative-caret-position="337">
+              <caret line="184" column="17" lean-forward="true" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -97,39 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/manager_controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="680">
               <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/manager_model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="238" column="19" selection-start-line="238" selection-start-column="19" selection-end-line="238" selection-end-column="19" />
-              <folding>
-                <element signature="n#style#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h1#0;n#nav#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#hr#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h2#0;n#article#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#article#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#article#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#1;n#article#0;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/profile_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="108" column="71" selection-start-line="108" selection-start-column="71" selection-end-line="108" selection-end-column="71" />
-              <folding>
-                <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -165,7 +131,6 @@
       <list>
         <option value="$PROJECT_DIR$/application/controllers/profile_controller.php" />
         <option value="$PROJECT_DIR$/application/controllers/recipe_controller.php" />
-        <option value="$PROJECT_DIR$/application/controllers/main_controller.php" />
         <option value="$PROJECT_DIR$/application/controllers/ingredients_controller.php" />
         <option value="$PROJECT_DIR$/application/controllers/recipe_edit_controller.php" />
         <option value="$PROJECT_DIR$/application/controllers/recipes_controller.php" />
@@ -176,7 +141,6 @@
         <option value="$PROJECT_DIR$/application/views/register_view.php" />
         <option value="$PROJECT_DIR$/css/profile.css" />
         <option value="$PROJECT_DIR$/css/register.css" />
-        <option value="$PROJECT_DIR$/css/user_recipes.css" />
         <option value="$PROJECT_DIR$/application/views/user_recipes_view.php" />
         <option value="$PROJECT_DIR$/application/models/user_recipes_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/user_recipes_controller.php" />
@@ -184,7 +148,6 @@
         <option value="$PROJECT_DIR$/application/views/profile_view.php" />
         <option value="$PROJECT_DIR$/application/views/comments_manager.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/application/views/recipe_view.php" />
         <option value="$PROJECT_DIR$/application/views/comments_manager_view.php" />
         <option value="$PROJECT_DIR$/css/comments_manager.css" />
         <option value="$PROJECT_DIR$/application/models/comments_manager_model.php" />
@@ -197,10 +160,8 @@
         <option value="$PROJECT_DIR$/application/core/route.php" />
         <option value="$PROJECT_DIR$/application/models/recipe_model.php" />
         <option value="$PROJECT_DIR$/application/models/login_model.php" />
-        <option value="$PROJECT_DIR$/application/controllers/login_controller.php" />
         <option value="$PROJECT_DIR$/css/login.css" />
         <option value="$PROJECT_DIR$/css/ideas.css" />
-        <option value="$PROJECT_DIR$/application/core/cache.php" />
         <option value="$PROJECT_DIR$/application/models/create_voting_model.php" />
         <option value="$PROJECT_DIR$/application/controllers/create_voting_controller.php" />
         <option value="$PROJECT_DIR$/application/views/create_voting_view.php" />
@@ -214,6 +175,11 @@
         <option value="$PROJECT_DIR$/application/views/manager_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/register_controller.php" />
         <option value="$PROJECT_DIR$/application/models/register_model.php" />
+        <option value="$PROJECT_DIR$/css/user_recipes.css" />
+        <option value="$PROJECT_DIR$/application/controllers/main_controller.php" />
+        <option value="$PROJECT_DIR$/application/controllers/login_controller.php" />
+        <option value="$PROJECT_DIR$/application/core/cache.php" />
+        <option value="$PROJECT_DIR$/application/views/recipe_view.php" />
       </list>
     </option>
   </component>
@@ -222,7 +188,7 @@
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1100" />
-    <option name="height" value="1103" />
+    <option name="height" value="1104" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -271,6 +237,23 @@
               <item name="htdocs" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="htdocs" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="htdocs" type="b2602c69:ProjectViewProjectNode" />
@@ -352,12 +335,13 @@
       <workItem from="1557561960283" duration="4264000" />
       <workItem from="1557586467970" duration="1527000" />
       <workItem from="1558073265671" duration="851000" />
-      <workItem from="1558121060062" duration="12080000" />
+      <workItem from="1558121060062" duration="16186000" />
+      <workItem from="1558556212150" duration="4822000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239360000" />
+    <option name="totallyTimeSpent" value="248288000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -372,7 +356,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22483222" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22818792" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -397,20 +381,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/models/main_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="601">
-          <caret line="42" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_4.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="669" column="9" selection-start-line="669" selection-start-column="9" selection-end-line="669" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/recipe_edit_model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -418,22 +388,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/css/for_all.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="21" lean-forward="true" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/core/model.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/user_recipes.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="203" column="22" selection-start-line="203" selection-start-column="22" selection-end-line="203" selection-end-column="22" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_8.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -446,30 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="41" column="60" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/user_recipes_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/user_recipes_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/recipe_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -490,21 +422,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/recipe_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/ideas_manager.php" />
-    <entry file="file://$PROJECT_DIR$/application/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/ideas_controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -580,27 +498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
           <caret line="2" column="72" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/core/cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/profile_controller.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -724,45 +621,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/manager_controller.php">
+    <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+        <state relative-caret-position="119">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/manager.css">
+    <entry file="file://$PROJECT_DIR$/config/css/for_all.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="344" column="2" selection-start-line="344" selection-start-column="2" selection-end-line="344" selection-end-column="2" />
+        <state>
+          <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/user_recipes.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="52" selection-start-line="52" selection-end-line="55" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/manager_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="50" column="43" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#article#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="2975">
+          <caret line="175" column="38" selection-start-line="175" selection-start-column="38" selection-end-line="175" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/register_controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="23" column="38" lean-forward="true" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/register_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
+        <state relative-caret-position="1071">
           <caret line="68" column="60" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/user_recipes_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/manager_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/manager.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="184" column="17" lean-forward="true" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/user_recipes_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/main_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/profile_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/core/cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/login_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/recipes_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/recipe_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="178" selection-start-line="15" selection-start-column="178" selection-end-line="15" selection-end-column="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/recipe_controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
         </state>
       </provider>
     </entry>
